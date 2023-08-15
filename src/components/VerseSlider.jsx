@@ -34,7 +34,7 @@ const VerseSlider = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between space-x-4">
+      <div className="flex items-center justify-between space-x-4 mb-12">
         <div className="hidden md:block">
           <PrevButton onClick={goToPrevVerse} />
         </div>
