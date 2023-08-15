@@ -44,6 +44,9 @@ function LanguageSelect() {
       setSelectedLanguage(currentLang);
     }
   }, [history.location.pathname]);
+  useEffect(() => {
+    setSelectedLanguage(langList.filter((el) => el.index === language)?.[0]);
+  }, [language]);
   return (
     <div className="mt-3 mb-9 lg:mt-16 lg:mb-12 w-full sm:w-72 mx-auto">
       <Combobox
@@ -80,7 +83,7 @@ function LanguageSelect() {
             </Combobox.Button>
           </div>
 
-          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-zinc-800 text-base focus:outline-none">
+          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-zinc-800 text-base focus:outline-none shadow-md">
             {filterLangList(query).map((lang) => (
               <Combobox.Option
                 key={lang.index}
