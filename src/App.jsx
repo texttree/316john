@@ -1,8 +1,16 @@
+import LanguageSelect from './components/LanguageSelect';
+import Header from './components/Header';
+import VerseSlider from './components/VerseSlider';
+import About from './components/About';
+
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <div className="mx-auto max-w-4xl px-7">
+      <Header />
+      <LanguageSelect />
+      <VerseSlider />
+      <About />
+    </div>
   );
 }
 

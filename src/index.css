@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@700;400&family=Inter:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply bg-white text-black dark:bg-stone-900 dark:text-zinc-100;
+  }
+}

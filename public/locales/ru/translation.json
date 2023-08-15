@@ -1,0 +1,23 @@
+{
+  "AboutProject": "О проекте",
+  "By": "от",
+  "ContactUs": "Свяжитесь с нами",
+  "Country": "Страна",
+  "TranslatedLanguage": "Переведен язык из",
+  "TranslatedLanguage_few": "Переведены {{count}} языка из",
+  "TranslatedLanguage_many": "Переведено {{count}} языков из",
+  "TranslatedLanguage_one": "Переведен {{count}} язык из",
+  "TranslatedLanguage_other": "Переведены {{count}} языка из",
+  "Language": "Язык",
+  "Language_few": "{{count}} языка",
+  "Language_many": "{{count}} языков",
+  "Language_one": "{{count}} язык",
+  "Language_other": "{{count}} языка",
+  "Message": "Сообщение",
+  "NotAllFieldFull": "Не все поля заполнены",
+  "OurGoal": "Наша цель",
+  "PrivacyPolicyMessage": "Нажимая кнопку 'Отправить', вы соглашаетесь с политикой конфиденциальности.",
+  "Send": "Отправить",
+  "YourMessageHasBeenSent": "Ваше сообщение отправлено",
+  "YourName": "Ваше имя"
+}
