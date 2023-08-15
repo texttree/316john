@@ -13,7 +13,7 @@ function About() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <div className="flex justify-center mt-24">
+      <div className="flex justify-center mt-24 mb-16">
         <button
           className="font-bold underline text-base"
           onClick={() => setIsOpen(true)}>
