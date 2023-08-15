@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const languageIdState = atom({
-  key: 'languageIdState',
+export const languageIndexState = atom({
+  key: 'languageIndexState',
   default: 0,
 });

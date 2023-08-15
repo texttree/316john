@@ -1,35 +1,32 @@
-import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState } from 'recoil';
+import { createBrowserHistory } from 'history';
 
 import NextButton from './NextButton';
 import PrevButton from './PrevButton';
 
-import { languageIdState } from '../atoms';
+import { languageIndexState } from '../atoms';
 import versesData from '../verses.json';
 
 const VerseSlider = () => {
+  let history = createBrowserHistory();
   const { t } = useTranslation();
-  const [language, setLanguage] = useRecoilState(languageIdState);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    setLanguage(currentIndex);
-  }, [currentIndex, setLanguage]);
-
-  useEffect(() => {
-    setCurrentIndex(language);
-  }, [setCurrentIndex, language]);
+  const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
 
   const goToNextVerse = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % versesData.length);
+    setLanguageIndex((prev) => {
+      const newVal = (prev + 1) % versesData.length;
+      history.push('/' + versesData[newVal].languageEnglish);
+      return newVal;
+    });
   };
 
   const goToPrevVerse = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + versesData.length) % versesData.length
-    );
+    setLanguageIndex((prev) => {
+      const newVal = (prev - 1 + versesData.length) % versesData.length;
+      history.push('/' + versesData[newVal].languageEnglish);
+      return newVal;
+    });
   };
 
   return (
@@ -40,7 +37,7 @@ const VerseSlider = () => {
         </div>
         <div className="mx-4 max-w-lg h-84 items-center justify-center rounded-lg hidden md:block">
           <p className="text-xl leading-tight text-center verse">
-            {versesData[currentIndex].verse}
+            {versesData[languageIndex].verse}
           </p>
         </div>
         <div className="hidden md:block">
@@ -49,7 +46,7 @@ const VerseSlider = () => {
       </div>
       <div className="w-full rounded-lg md:hidden mb-4">
         <p className="text-xl leading-tight text-center verse">
-          {versesData[currentIndex].verse}
+          {versesData[languageIndex].verse}
         </p>
       </div>
       <div className="flex justify-between space-x-4 md:hidden my-16">
@@ -59,39 +56,41 @@ const VerseSlider = () => {
       <div className="mb-12">
         <div className="text-center justify-between space-x-4 mb-4">
           <div className="inline-block font-bold">
-            {versesData[currentIndex].languageOriginal}{' '}
+            {versesData[languageIndex].languageOriginal}{' '}
             <span className="font-normal capitalize">
-              {versesData[currentIndex].languageOriginal.toLocaleLowerCase() !==
-              versesData[currentIndex].languageEnglish.toLocaleLowerCase()
-                ? '(' + versesData[currentIndex].languageEnglish + ')'
+              {versesData[
+                languageIndex
+              ].languageOriginal.toLocaleLowerCase() !==
+              versesData[languageIndex].languageEnglish.toLocaleLowerCase()
+                ? '(' + versesData[languageIndex].languageEnglish + ')'
                 : ''}
             </span>
           </div>
         </div>
         <div className="text-center text-gray-400">
           <a
-            href={versesData[currentIndex].refNameTranslate}
+            href={versesData[languageIndex].refNameTranslate}
             target="_blank"
             rel="noopener noreferrer"
             className="underline">
-            {versesData[currentIndex].nameTranslate}
+            {versesData[languageIndex].nameTranslate}
           </a>{' '}
           {t('By')}{' '}
           <a
-            href={versesData[currentIndex].refOwner}
+            href={versesData[languageIndex].refOwner}
             target="_blank"
             rel="noopener noreferrer"
             className="underline">
-            {versesData[currentIndex].owner}
+            {versesData[languageIndex].owner}
           </a>
         </div>
         <div className="text-center text-gray-400 underline">
           <a
-            href={versesData[currentIndex].refOwner}
+            href={versesData[languageIndex].refOwner}
             target="_blank"
             rel="noopener noreferrer">
             {t('License')}
-            {`: ${versesData[currentIndex].license}`}
+            {`: ${versesData[languageIndex].license}`}
           </a>
         </div>
       </div>
