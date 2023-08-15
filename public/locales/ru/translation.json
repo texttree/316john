@@ -1,5 +1,6 @@
 {
   "AboutProject": "О проекте",
+  "AboutProjectText": "На русском. Lorem ipsum dolor sit amet consectetur. Massa nunc tempor velit vivamus vitae auctor. A sagittis sit nunc sed blandit. Ipsum eu orci magna sed ipsum tristique nec. Eget mi faucibus est nunc arcu viverra.",
   "By": "от",
   "ContactUs": "Свяжитесь с нами",
   "Country": "Страна",
@@ -13,11 +14,14 @@
   "Language_many": "{{count}} языков",
   "Language_one": "{{count}} язык",
   "Language_other": "{{count}} языка",
+  "License": "Лицензия",
   "Message": "Сообщение",
   "NotAllFieldFull": "Не все поля заполнены",
   "OurGoal": "Наша цель",
+  "OurGoalText": "Наша цель - до 2033 года перевести стих Иоанна 3:16 на все языки мира.",
   "PrivacyPolicyMessage": "Нажимая кнопку 'Отправить', вы соглашаетесь с политикой конфиденциальности.",
   "Send": "Отправить",
+  "YourEmail": "Ваш email",
   "YourMessageHasBeenSent": "Ваше сообщение отправлено",
   "YourName": "Ваше имя"
 }

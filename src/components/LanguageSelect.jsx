@@ -3,59 +3,36 @@ import { Combobox } from '@headlessui/react';
 import { createBrowserHistory } from 'history';
 import { useRecoilState } from 'recoil';
 
-import { languageIdState } from '../atoms';
-import versesData from '../verses.json';
-
-const langList = versesData.map((lang, index) => ({
-  orig: lang.languageOriginal,
-  index,
-  eng: lang.languageEnglish,
-  variants: lang.languageVariants
-    .split(',')
-    .map((el) => el.trim().toLowerCase()),
-}));
-
-const filterLangList = (filter) => {
-  return langList.filter(
-    ({ variants }) =>
-      variants.filter((el) => el.startsWith(filter.trim().toLowerCase()))
-        .length > 0
-  );
-};
-
-const searchLanguage = (search) => {
-  return langList.filter(
-    (lang) => lang.eng.toLocaleLowerCase() === search.toLocaleLowerCase()
-  )?.[0];
-};
+import { languageIndexState } from '../atoms';
+import { filterLangList, langList, searchLanguage } from '../helper';
 
 function LanguageSelect() {
-  const [language, setLanguage] = useRecoilState(languageIdState);
   let history = createBrowserHistory();
+  const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
   const [selectedLanguage, setSelectedLanguage] = useState({});
   const [query, setQuery] = useState('');
 
   useEffect(() => {
-    setSelectedLanguage(langList.filter((el) => el.index === language)?.[0]);
-  }, [language]);
+    setSelectedLanguage(
+      langList.filter((el) => el.index === languageIndex)?.[0]
+    );
+  }, [languageIndex]);
 
   useEffect(() => {
     const currentLang = searchLanguage(history.location.pathname.slice(1));
     if (currentLang?.eng) {
-      setSelectedLanguage(currentLang);
+      setLanguageIndex(currentLang.index);
     }
-  }, [history.location.pathname]);
-  useEffect(() => {
-    setSelectedLanguage(langList.filter((el) => el.index === language)?.[0]);
-  }, [language]);
+  }, [history.location.pathname, setLanguageIndex]);
+
   return (
-    <div className="mt-3 mb-9 lg:mt-16 lg:mb-12 w-full sm:w-72 mx-auto">
+    <div className="mt-5 mb-9 sm:my-14 lg:my-20 w-full sm:w-72 mx-auto">
       <Combobox
         value={selectedLanguage}
         onChange={(newValue) => {
           setSelectedLanguage(newValue);
           history.push('/' + newValue.eng);
-          setLanguage(newValue.index);
+          setLanguageIndex(newValue.index);
         }}>
         <div className="relative">
           <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-zinc-800 p-2 rounded-full flex w-full text-left">
