@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 
-function Feadback() {
+function Feedback() {
   const { t } = useTranslation();
   const [name, setName] = useState("");
   const [country, setCountry] = useState("");
@@ -72,4 +72,4 @@ function Feadback() {
   );
 }
 
-export default Feadback;
+export default Feedback;

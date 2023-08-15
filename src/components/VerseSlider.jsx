@@ -28,9 +28,19 @@ const VerseSlider = () => {
         <NextButton onClick={goToNextVerse} />
       </div>
       <br />
-      <p className="text-sm text-center">
-        {versesData[currentIndex].languageOriginal}
-      </p>
+      <div>
+        <p className="text-sm text-center">
+          <span className="font-bold">
+            {versesData[currentIndex].languageOriginal}
+          </span>
+          <span className="text-gray-500"> </span>
+          <span className="font-bold">
+            {versesData[currentIndex].languageEnglish}
+          </span>
+        </p>
+        <br />
+        <br />
+      </div>
       <br />{" "}
     </div>
   );

@@ -2,10 +2,16 @@ import { useState } from "react";
 import { createBrowserHistory } from "history";
 import versesData from "../verses.json";
 
-const langList = versesData;
+const langList = versesData.map((lang) => ({
+  orig: lang.languageOriginal,
+  eng: lang.languageEnglish,
+  variants: lang.languageVariants
+    .split(",")
+    .map((el) => el.trim().toLowerCase()),
+}));
 
-const filterLangList = (langList, filter) => {
-  return langList;
+const filterLangList = (filter) => {
+  return langList.filter(({ variants }) => variants.filter((el) => el.start));
 };
 
 function LanguageSelect() {

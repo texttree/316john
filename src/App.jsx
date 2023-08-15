@@ -1,7 +1,7 @@
-import Feadback from "./components/Feadback";
 import LanguageSelect from "./components/LanguageSelect";
 import Header from "./components/Header";
 import VerseSlider from "./components/VerseSlider";
+import Feedback from "./components/Feedback";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Header />
       <LanguageSelect />
       <VerseSlider />
-      <Feadback />
+      <Feedback />
     </div>
   );
 }
