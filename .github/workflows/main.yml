@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
         uses: voorhoede/get-netlify-url@v1
         id: get-netlify-url
         with:
-          site-name: tt-bsa
+          site-name: 316john
 
       - name: 'Log retrieved URL'
         run: 'echo ${{ steps.get-netlify-url.outputs.url }}'
