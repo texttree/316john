@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { createBrowserHistory } from 'history';
-import versesData from '../verses.json';
 import { Combobox } from '@headlessui/react';
+import { createBrowserHistory } from 'history';
 import { useRecoilState } from 'recoil';
+
 import { languageIdState } from '../atoms';
+import versesData from '../verses.json';
 
 const langList = versesData.map((lang, index) => ({
   orig: lang.languageOriginal,
@@ -33,6 +34,11 @@ function LanguageSelect() {
   let history = createBrowserHistory();
   const [selectedLanguage, setSelectedLanguage] = useState({});
   const [query, setQuery] = useState('');
+
+  useEffect(() => {
+    setSelectedLanguage(langList.filter((el) => el.index === language)?.[0]);
+  }, [language]);
+
   useEffect(() => {
     const currentLang = searchLanguage(history.location.pathname.slice(1));
     if (currentLang?.eng) {

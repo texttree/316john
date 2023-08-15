@@ -1,4 +1,4 @@
-import LocaleSwitch from "./LocaleSwitch";
+import LocaleSwitch from './LocaleSwitch';
 
 function Header() {
   return (
