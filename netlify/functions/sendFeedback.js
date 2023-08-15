@@ -1,13 +1,19 @@
 const axios = require('axios');
 
 exports.handler = async function (event) {
-  const sendInfo = JSON.parse(event.body);
-  if (!sendInfo) {
+  let sendInfo;
+  try {
+    sendInfo = JSON.parse(event.body);
+    if (!sendInfo) {
+      throw 'error';
+    }
+  } catch {
     return {
       statusCode: 200,
       body: JSON.stringify({ status: 'error' }),
     };
   }
+
   if (Object.values(sendInfo).length < 3) {
     return {
       statusCode: 200,
