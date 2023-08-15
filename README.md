@@ -2,7 +2,7 @@
 
 Plan:
 
-1. Modal about.
+1. Modal about. (Alex)
 2. Autocomplete-select (search) (Vitek)
 3. Feadback. (Alex)
 4. Localization (switch of languages) i18next (Viktor)

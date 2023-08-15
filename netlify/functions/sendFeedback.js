@@ -1,4 +1,4 @@
-import { get } from 'axios';
+import axios from 'axios';
 
 export async function handler(event) {
   const sendInfo = JSON.parse(event.body);
@@ -17,7 +17,7 @@ export async function handler(event) {
   const { name, country, message } = sendInfo;
 
   const { VITE_API_TELEGRAM_TOKEN, VITE_GROUP_TELEGRAM } = import.meta.env;
-  await get(
+  await axios.get(
     `https://api.telegram.org/bot${VITE_API_TELEGRAM_TOKEN}/sendMessage?text=${encodeURI(
       `Name: ${name}\nCountry: ${country}\nText: ${message}&chat_id=${VITE_GROUP_TELEGRAM}`
     )}`

@@ -29,15 +29,46 @@ const VerseSlider = () => {
       </div>
       <br />
       <div>
-        <p className="text-sm text-center">
-          <span className="font-bold">
-            {versesData[currentIndex].languageOriginal}
-          </span>
-          <span className="text-gray-500"> </span>
-          <span className="font-bold">
-            {versesData[currentIndex].languageEnglish}
-          </span>
-        </p>
+        <div>
+          <div className=" text-base text-center  justify-between space-x-4 ">
+            <div className="inline-block font-bold">
+              {versesData[currentIndex].languageOriginal}{" "}
+              <span className="font-normal">
+                ({versesData[currentIndex].languageEnglish})
+              </span>
+            </div>
+          </div>
+          <br />
+          <div className="text-center text-gray-400">
+            <a
+              href={versesData[currentIndex].refNameTranslate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              {versesData[currentIndex].nameTranslate}
+            </a>
+            {" by "}
+            <a
+              href={versesData[currentIndex].refOwner}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              {versesData[currentIndex].owner}
+            </a>
+          </div>
+          <div className="text-center text-gray-400 underline">
+            <a
+              href={versesData[currentIndex].refOwner}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {`License:  ${versesData[currentIndex].license}`}
+            </a>
+          </div>
+        </div>
+
         <br />
         <br />
       </div>
