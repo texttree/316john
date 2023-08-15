@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import PropTypes from "prop-types";
 
-export default function Modal({ isOpen, close, children, title }) {
+export default function Modal({ isOpen, close, children }) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -16,31 +16,23 @@ export default function Modal({ isOpen, close, children, title }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    {title}
-                  </Dialog.Title>
-                  <div className="mt-2">{children}</div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="w-full transform overflow-hidden bg-white dark:bg-black text-left align-middle shadow-xl transition-all">
+                {children}
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
         </Dialog>
       </Transition>
@@ -52,5 +44,10 @@ Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
-  title: PropTypes.string.isRequired,
+};
+
+Modal.defaultProps = {
+  isOpen: false,
+  close: () => {},
+  children: Fragment,
 };

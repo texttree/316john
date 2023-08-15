@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { createBrowserHistory } from 'history';
-import versesData from '../verses.json';
-import { Combobox } from '@headlessui/react';
-import { useRecoilState } from 'recoil';
-import { languageIdState } from '../atoms';
+import { useEffect, useState } from "react";
+import { createBrowserHistory } from "history";
+import versesData from "../verses.json";
+import { Combobox } from "@headlessui/react";
+import { useRecoilState } from "recoil";
+import { languageIdState } from "../atoms";
 
 const langList = versesData.map((lang, index) => ({
   orig: lang.languageOriginal,
   index,
   eng: lang.languageEnglish,
   variants: lang.languageVariants
-    .split(',')
+    .split(",")
     .map((el) => el.trim().toLowerCase()),
 }));
 
@@ -32,7 +32,12 @@ function LanguageSelect() {
   const [language, setLanguage] = useRecoilState(languageIdState);
   let history = createBrowserHistory();
   const [selectedLanguage, setSelectedLanguage] = useState({});
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    setSelectedLanguage(langList.filter((el) => el.index === language)?.[0]);
+  }, [language]);
+
   useEffect(() => {
     const currentLang = searchLanguage(history.location.pathname.slice(1));
     if (currentLang?.eng) {
@@ -45,9 +50,10 @@ function LanguageSelect() {
         value={selectedLanguage}
         onChange={(newValue) => {
           setSelectedLanguage(newValue);
-          history.push('/' + newValue.eng);
+          history.push("/" + newValue.eng);
           setLanguage(newValue.index);
-        }}>
+        }}
+      >
         <div className="relative">
           <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-zinc-800 p-2 rounded-full flex w-full text-left">
             <Combobox.Input
@@ -63,7 +69,8 @@ function LanguageSelect() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-11 h-5 cursor-pointer px-3">
+                className="w-11 h-5 cursor-pointer px-3"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -81,10 +88,11 @@ function LanguageSelect() {
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-10 pr-4 ${
                     active
-                      ? 'bg-black dark:bg-zinc-700 text-white dark:text-white'
-                      : 'text-slate-900 dark:text-white'
+                      ? "bg-black dark:bg-zinc-700 text-white dark:text-white"
+                      : "text-slate-900 dark:text-white"
                   }`
-                }>
+                }
+              >
                 {lang.orig}
               </Combobox.Option>
             ))}

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const PrevButton = ({ onClick }) => (
+const PrevButton = ({ onClick, classes }) => (
   <button
     className="bg-zinc-100 dark:bg-zinc-800 rounded-full p-3"
     onClick={onClick}
@@ -11,7 +11,7 @@ const PrevButton = ({ onClick }) => (
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className="w-6 h-6"
+      className={classes}
     >
       <path
         strokeLinecap="round"
@@ -24,5 +24,10 @@ const PrevButton = ({ onClick }) => (
 
 PrevButton.propTypes = {
   onClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+};
+PrevButton.defaultProps = {
+  onClick: () => {},
+  classes: "w-6 h-6",
 };
 export default PrevButton;
