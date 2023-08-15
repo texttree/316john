@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createBrowserHistory } from 'history';
 import versesData from '../verses.json';
 import { Combobox } from '@headlessui/react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { languageIdState } from '../atoms';
 
 const langList = versesData.map((lang, index) => ({
@@ -22,11 +22,23 @@ const filterLangList = (filter) => {
   );
 };
 
+const searchLanguage = (search) => {
+  return langList.filter(
+    (lang) => lang.eng.toLocaleLowerCase() === search.toLocaleLowerCase()
+  )?.[0];
+};
+
 function LanguageSelect() {
-  const setLanguage = useSetRecoilState(languageIdState);
+  const [language, setLanguage] = useRecoilState(languageIdState);
   let history = createBrowserHistory();
-  const [selectedLanguage, setSelectedLanguage] = useState(0);
+  const [selectedLanguage, setSelectedLanguage] = useState({});
   const [query, setQuery] = useState('');
+  useEffect(() => {
+    const currentLang = searchLanguage(history.location.pathname.slice(1));
+    if (currentLang?.eng) {
+      setSelectedLanguage(currentLang);
+    }
+  }, [history.location.pathname]);
   return (
     <div className="mt-3 mb-9 lg:mt-16 lg:mb-12 w-full sm:w-72 mx-auto">
       <Combobox
