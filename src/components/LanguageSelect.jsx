@@ -49,7 +49,7 @@ function LanguageSelect() {
     setSelectedLanguage(langList.filter((el) => el.index === language)?.[0]);
   }, [language]);
   return (
-    <div className="mt-3 mb-9 lg:mt-16 lg:mb-12 w-full sm:w-72 mx-auto">
+    <div className="mt-5 mb-9 sm:my-14 lg:my-20 w-full sm:w-72 mx-auto">
       <Combobox
         value={selectedLanguage}
         onChange={(newValue) => {

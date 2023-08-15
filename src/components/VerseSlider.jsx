@@ -34,7 +34,7 @@ const VerseSlider = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between space-x-4 mb-12">
+      <div className="flex items-center justify-between space-x-4 mb-16">
         <div className="hidden md:block">
           <PrevButton onClick={goToPrevVerse} />
         </div>
@@ -52,7 +52,7 @@ const VerseSlider = () => {
           {versesData[currentIndex].verse}
         </p>
       </div>
-      <div className="flex justify-center space-x-4 md:hidden mb-4">
+      <div className="flex justify-between space-x-4 md:hidden my-16">
         <PrevButton onClick={goToPrevVerse} />
         <NextButton onClick={goToNextVerse} />
       </div>
@@ -60,8 +60,11 @@ const VerseSlider = () => {
         <div className="text-center justify-between space-x-4 mb-4">
           <div className="inline-block font-bold">
             {versesData[currentIndex].languageOriginal}{' '}
-            <span className="font-normal">
-              ({versesData[currentIndex].languageEnglish})
+            <span className="font-normal capitalize">
+              {versesData[currentIndex].languageOriginal.toLocaleLowerCase() !==
+              versesData[currentIndex].languageEnglish.toLocaleLowerCase()
+                ? '(' + versesData[currentIndex].languageEnglish + ')'
+                : ''}
             </span>
           </div>
         </div>
@@ -87,7 +90,8 @@ const VerseSlider = () => {
             href={versesData[currentIndex].refOwner}
             target="_blank"
             rel="noopener noreferrer">
-            {`License: ${versesData[currentIndex].license}`}
+            {t('License')}
+            {`: ${versesData[currentIndex].license}`}
           </a>
         </div>
       </div>

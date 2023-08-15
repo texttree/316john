@@ -22,7 +22,7 @@ const PrevButton = ({ onClick, classes }) => (
 
 PrevButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.string.isRequired,
 };
 PrevButton.defaultProps = {
   onClick: () => {},
