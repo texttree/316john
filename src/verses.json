@@ -1,0 +1,24 @@
+[
+  {
+    "languageOriginal": "русский",
+    "langVariants": "russian, ru, русский, ру",
+    "verse": "Бог так полюбил мир, что дал Единственного Сына, чтобы верующий в Него не погиб, но обрел вечную жизнь.",
+    "owner": "",
+    "refOwner": "",
+    "license": "CC BY-SA 3.0",
+    "refLicense": "https://creativecommons.org/licenses/by-sa/3.0/deed.ru",
+    "nameTranslate": "Открытый перевод Нового Завета (OTNT)",
+    "refNameTranslate": "http://biblelamp.ru/openbible/"
+  },
+  {
+    "languageOriginal": "english",
+    "langVariants": "english, en",
+    "verse": "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.",
+    "owner": "",
+    "refOwner": "https://bible.by/nrt/",
+    "license": "Biblica, Inc.®, 2006, 2010, 2012, 2014",
+    "refLicense": "",
+    "nameTranslate": "King James Version (KJV)",
+    "refNameTranslate": ""
+  }
+]
