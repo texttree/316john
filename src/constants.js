@@ -1,4 +1,4 @@
 export const langs = [
-  { code: "ru", name: "Руc" },
-  { code: "en", name: "Eng" },
+  { code: 'ru', name: 'Руcкий', short: 'Рус' },
+  { code: 'en', name: 'English', short: 'Eng' },
 ];
