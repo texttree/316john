@@ -39,7 +39,7 @@ const VerseSlider = () => {
           <PrevButton onClick={goToPrevVerse} />
         </div>
         <div className="mx-4 max-w-lg h-84 items-center justify-center rounded-lg hidden md:block">
-          <p className="text-xl leading-tight text-center font-['Anek_Bangla']">
+          <p className="text-xl leading-tight text-center verse">
             {versesData[currentIndex].verse}
           </p>
         </div>
@@ -48,7 +48,7 @@ const VerseSlider = () => {
         </div>
       </div>
       <div className="w-full rounded-lg md:hidden mb-4">
-        <p className="text-xl leading-tight text-center font-['Anek_Bangla']">
+        <p className="text-xl leading-tight text-center verse">
           {versesData[currentIndex].verse}
         </p>
       </div>
