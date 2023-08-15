@@ -1,6 +1,7 @@
-import { useTranslation } from 'react-i18next';
-import { langs } from '../constants';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { langs } from '../constants';
 
 function LocaleSwitch() {
   const { i18n } = useTranslation();

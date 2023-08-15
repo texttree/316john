@@ -1,6 +1,6 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import PropTypes from "prop-types";
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 export default function Modal({ isOpen, close, children }) {
   return (
@@ -14,8 +14,7 @@ export default function Modal({ isOpen, close, children }) {
             enterTo="opacity-100"
             leave="ease-in duration-200"
             leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
+            leaveTo="opacity-0">
             <div className="fixed inset-0" />
           </Transition.Child>
 
@@ -27,9 +26,8 @@ export default function Modal({ isOpen, close, children }) {
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel className="w-full transform overflow-hidden bg-white dark:bg-black text-left align-middle shadow-xl transition-all">
+              leaveTo="opacity-0 scale-95">
+              <Dialog.Panel className="w-full transform min-h-screen overflow-hidden bg-white dark:bg-stone-900 text-left align-middle shadow-xl transition-all">
                 {children}
               </Dialog.Panel>
             </Transition.Child>
