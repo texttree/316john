@@ -7,16 +7,21 @@ import PrevButton from './PrevButton';
 import Header from './Header';
 
 import versesData from '../verses.json';
+import youtubeImage from '../../public/youtube.png';
+import youtubeHoverImage from '../../public/youtube-hover.png';
 
 function About() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div>
       <div className="flex justify-center mt-24 mb-16">
         <button
           className="font-bold underline text-base"
-          onClick={() => setIsOpen(true)}>
+          onClick={() => setIsOpen(true)}
+        >
           {t('AboutProject')}
         </button>
       </div>
@@ -29,14 +34,32 @@ function About() {
             <Header />
           </div>
 
-          <div className="space-y-20">
-            <div className="space-y-20 mx-auto max-w-md">
+          <div className="space-y-10">
+            <div className="space-y-5 mx-auto max-w-md">
               <div className="flex flex-col gap-5 justify-center items-center text-center">
                 <div className="text-xl font-bold">{t('AboutProject')}</div>
                 <p className="text-base">{t('AboutProjectText')}</p>
-                <p className="text-sm">{`${t('TranslatedLanguage', {
-                  count: versesData.length,
-                })} 7000`}</p>
+                <p className="text-sm">
+                  {`${t('TranslatedLanguage', {
+                    count: versesData.length,
+                  })} 7000`}
+                </p>
+              </div>
+              <div className="flex items-center justify-center">
+                <a
+                  href="https://www.youtube.com/@316John"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition duration-300 ease-in-out hover:text-red-500"
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                >
+                  <img
+                    src={isHovered ? youtubeHoverImage : youtubeImage}
+                    alt="YouTube Icon"
+                    className="text-3xl"
+                  />
+                </a>
               </div>
               <div className="flex flex-col gap-5 justify-center items-center text-center">
                 <div className="text-xl font-bold">{t('OurGoal')}</div>
