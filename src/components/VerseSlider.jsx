@@ -4,6 +4,8 @@ import { createBrowserHistory } from 'history';
 
 import NextButton from './NextButton';
 import PrevButton from './PrevButton';
+import NextVerseButton from './NextVerseButton';
+import PrevVerseButton from './PrevVerseButton';
 
 import { languageIndexState } from '../atoms';
 import versesData from '../verses.json';
@@ -49,24 +51,38 @@ const VerseSlider = () => {
           {versesData[languageIndex].verse}
         </p>
       </div>
+      <div className="flex justify-center items-center space-x-2 mt-2">
+        {versesData.map((verse, index) => (
+          <span
+            key={index}
+            className={`h-3 w-3 rounded-full ${languageIndex === index ? 'bg-gray-700' : 'bg-gray-300'}`}
+          ></span>
+        ))}
+      </div>
+      <br/>
       <div className="flex justify-between space-x-4 md:hidden my-16">
         <PrevButton onClick={goToPrevVerse} />
         <NextButton onClick={goToNextVerse} />
       </div>
-      <div className="mb-12">
-        <div className="text-center justify-between space-x-4 mb-4">
-          <div className="inline-block font-bold">
-            {versesData[languageIndex].languageOriginal}{' '}
-            <span className="font-normal capitalize">
-              {versesData[
-                languageIndex
-              ].languageOriginal.toLocaleLowerCase() !==
-              versesData[languageIndex].languageEnglish.toLocaleLowerCase()
-                ? '(' + versesData[languageIndex].languageEnglish + ')'
-                : ''}
-            </span>
-          </div>
-        </div>
+  
+      <div className="mb-12">        
+      <div className="text-center justify-between space-x-4 mb-4">
+      <PrevVerseButton onClick={goToPrevVerse} />
+
+      <div className="inline-block font-bold">
+        {versesData[languageIndex].languageOriginal}{' '}
+        <span className="font-normal capitalize">
+          {versesData[languageIndex].languageOriginal.toLowerCase() !==
+          versesData[languageIndex].languageEnglish.toLowerCase()
+            ? '(' + versesData[languageIndex].languageEnglish + ')'
+            : ''}
+        </span>
+      </div>
+
+      <NextVerseButton onClick={goToNextVerse} />
+
+
+    </div>
         <div className="text-center text-gray-400">
           <a
             href={versesData[languageIndex].refNameTranslate}
