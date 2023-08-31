@@ -48,6 +48,18 @@
     "refNameTranslate": "http://biblelamp.ru/openbible/"
   },
   {
+    "languageEnglish": "russian",
+    "languageOriginal": "Русский",
+    "languageVariants": "russian, русский",
+    "verse": "Ибо так возлюбил Бог мир, что отдал Сына Своего Единородного, дабы всякий, верующий в Него, не погиб, но имел жизнь вечную",
+    "owner": "Test Owner",
+    "refOwner": "https://bible.by/nrt/",
+    "license": "CC BY-SA 3.0",
+    "refLicense": "https://creativecommons.org/licenses/by-sa/3.0/deed.ru",
+    "nameTranslate": "Синодальный",
+    "refNameTranslate": "http://biblelamp.ru/openbible/"
+  },
+  {
     "languageEnglish": "ukrainian",
     "languageOriginal": "Українська",
     "languageVariants": "Ukrainian, ua, Українська",
