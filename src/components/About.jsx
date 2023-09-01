@@ -7,7 +7,6 @@ import PrevButton from './PrevButton';
 import Header from './Header';
 import { languageGroups } from './VerseUtils';
 
-// import versesData from '../verses.json';
 import youtubeImage from '../../public/youtube.png';
 import youtubeHoverImage from '../../public/youtube-hover.png';
 
