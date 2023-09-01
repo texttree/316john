@@ -17,8 +17,23 @@ const VerseSlider = () => {
   const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
   const [translateIndex, setTranslateIndex] = useState(0);
 
+  const getLanguageGroups = () => {
+    const groups = {};
+    versesData.forEach((verse) => {
+      if (!groups[verse.languageEnglish]) {
+        groups[verse.languageEnglish] = [];
+      }
+      groups[verse.languageEnglish].push(verse);
+    });
+    return groups;
+  };
+
+  
+  const languageGroups = getLanguageGroups();
+  const currentLanguage = versesData[languageIndex].languageEnglish;
+  const currentGroup = languageGroups[currentLanguage];
+
   const goToNextVerse = () => {
-    const currentLanguage = versesData[languageIndex].languageEnglish;
     const languages = Object.keys(languageGroups);
     const currentIndex = languages.indexOf(currentLanguage);
     const nextIndex = (currentIndex + 1) % languages.length;
@@ -31,7 +46,6 @@ const VerseSlider = () => {
   };
 
   const goToPrevVerse = () => {
-    const currentLanguage = versesData[languageIndex].languageEnglish;
     const languages = Object.keys(languageGroups);
     const currentIndex = languages.indexOf(currentLanguage);
     const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
@@ -44,8 +58,6 @@ const VerseSlider = () => {
   };
 
   const goToNextVerseLang = () => {
-    const currentLanguage = versesData[languageIndex].languageEnglish;
-    const currentGroup = languageGroups[currentLanguage];
     const nextIndex = (translateIndex + 1) % currentGroup.length;
     setTranslateIndex(nextIndex);
 
@@ -59,8 +71,6 @@ const VerseSlider = () => {
   };
 
   const goToPrevVerseLang = () => {
-    const currentLanguage = versesData[languageIndex].languageEnglish;
-    const currentGroup = languageGroups[currentLanguage];
     const prevIndex = (translateIndex - 1 + currentGroup.length) % currentGroup.length;
     setTranslateIndex(prevIndex);
 
@@ -73,20 +83,8 @@ const VerseSlider = () => {
     history.push('/' + prevLanguageEnglish + '/' + prevShortNameTranslate);
   };
 
-  const getLanguageGroups = () => {
-    const groups = {};
-    versesData.forEach((verse) => {
-      if (!groups[verse.languageEnglish]) {
-        groups[verse.languageEnglish] = [];
-      }
-      groups[verse.languageEnglish].push(verse);
-    });
-    return groups;
-  };
 
-  const languageGroups = getLanguageGroups();
-  const currentLanguage = versesData[languageIndex].languageEnglish;
-  const currentGroup = languageGroups[currentLanguage];
+
 
   return (
     <div>
