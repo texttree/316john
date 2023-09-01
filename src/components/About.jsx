@@ -5,8 +5,9 @@ import Feedback from './Feedback';
 import Modal from './Modal';
 import PrevButton from './PrevButton';
 import Header from './Header';
+import { languageGroups } from './VerseUtils';
 
-import versesData from '../verses.json';
+// import versesData from '../verses.json';
 import youtubeImage from '../../public/youtube.png';
 import youtubeHoverImage from '../../public/youtube-hover.png';
 
@@ -14,7 +15,6 @@ function About() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-
   return (
     <div>
       <div className="flex justify-center mt-24 mb-16">
@@ -41,7 +41,7 @@ function About() {
                 <p className="text-base">{t('AboutProjectText')}</p>
                 <p className="text-sm">
                   {`${t('TranslatedLanguage', {
-                    count: versesData.length,
+                    count: Object.keys(languageGroups).length,
                   })} 7000`}
                 </p>
               </div>
