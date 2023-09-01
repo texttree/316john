@@ -87,7 +87,7 @@ const VerseSlider = () => {
   const languageGroups = getLanguageGroups();
   const currentLanguage = versesData[languageIndex].languageEnglish;
   const currentGroup = languageGroups[currentLanguage];
-  
+
   return (
     <div>
       <div className="flex items-center justify-between space-x-4 mb-16">
@@ -95,7 +95,7 @@ const VerseSlider = () => {
           <PrevButton onClick={goToPrevVerse} />
         </div>
         <div className="mx-4 max-w-lg h-84 items-center justify-center rounded-lg hidden md:block">
-          <p className="text-xl leading-tight text-center verse">
+          <p className="text-3xl leading-tight text-center verse">
             {versesData[languageIndex].verse}
           </p>
         </div>
@@ -104,7 +104,7 @@ const VerseSlider = () => {
         </div>
       </div>
       <div className="w-full rounded-lg md:hidden mb-4">
-        <p className="text-xl leading-tight text-center verse">
+        <p className="text-3xl leading-tight text-center verse">
           {versesData[languageIndex].verse}
         </p>
       </div>
