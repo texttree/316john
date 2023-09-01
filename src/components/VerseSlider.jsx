@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState } from 'recoil';
 import { createBrowserHistory } from 'history';
@@ -14,23 +15,79 @@ const VerseSlider = () => {
   let history = createBrowserHistory();
   const { t } = useTranslation();
   const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
+  const [translateIndex, setTranslateIndex] = useState(0);
 
   const goToNextVerse = () => {
-    setLanguageIndex((prev) => {
-      const newVal = (prev + 1) % versesData.length;
-      history.push('/' + versesData[newVal].languageEnglish);
-      return newVal;
-    });
+    const currentLanguage = versesData[languageIndex].languageEnglish;
+    const languages = Object.keys(languageGroups);
+    const currentIndex = languages.indexOf(currentLanguage);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    const nextLanguage = languages[nextIndex];
+
+    setTranslateIndex(0); // Сбросить translateIndex на 0 при переключении языковой группы
+    setLanguageIndex(versesData.findIndex((verse) => verse.languageEnglish === nextLanguage));
+
+    history.push('/' + nextLanguage + '/' + languageGroups[nextLanguage][0].shortNameTranslate);
   };
 
   const goToPrevVerse = () => {
-    setLanguageIndex((prev) => {
-      const newVal = (prev - 1 + versesData.length) % versesData.length;
-      history.push('/' + versesData[newVal].languageEnglish);
-      return newVal;
-    });
+    const currentLanguage = versesData[languageIndex].languageEnglish;
+    const languages = Object.keys(languageGroups);
+    const currentIndex = languages.indexOf(currentLanguage);
+    const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
+    const prevLanguage = languages[prevIndex];
+
+    setTranslateIndex(0); // Сбросить translateIndex на 0 при переключении языковой группы
+    setLanguageIndex(versesData.findIndex((verse) => verse.languageEnglish === prevLanguage));
+
+    history.push('/' + prevLanguage + '/' + languageGroups[prevLanguage][0].shortNameTranslate);
   };
 
+  const goToNextVerseLang = () => {
+    const currentLanguage = versesData[languageIndex].languageEnglish;
+    const currentGroup = languageGroups[currentLanguage];
+    const nextIndex = (translateIndex + 1) % currentGroup.length;
+    setTranslateIndex(nextIndex);
+
+    const nextLanguageEnglish = currentGroup[nextIndex].languageEnglish;
+    const nextNameTranslate = currentGroup[nextIndex].nameTranslate;
+    const nextShortNameTranslate = currentGroup[nextIndex].shortNameTranslate;
+
+    setLanguageIndex(versesData.findIndex((verse) => verse.nameTranslate === nextNameTranslate));
+
+    history.push('/' + nextLanguageEnglish + '/' + nextShortNameTranslate);
+  };
+
+  const goToPrevVerseLang = () => {
+    const currentLanguage = versesData[languageIndex].languageEnglish;
+    const currentGroup = languageGroups[currentLanguage];
+    const prevIndex = (translateIndex - 1 + currentGroup.length) % currentGroup.length;
+    setTranslateIndex(prevIndex);
+
+    const prevLanguageEnglish = currentGroup[prevIndex].languageEnglish;
+    const prevNameTranslate = currentGroup[prevIndex].nameTranslate;
+    const prevShortNameTranslate = currentGroup[prevIndex].shortNameTranslate;
+
+    setLanguageIndex(versesData.findIndex((verse) => verse.nameTranslate === prevNameTranslate));
+
+    history.push('/' + prevLanguageEnglish + '/' + prevShortNameTranslate);
+  };
+
+  const getLanguageGroups = () => {
+    const groups = {};
+    versesData.forEach((verse) => {
+      if (!groups[verse.languageEnglish]) {
+        groups[verse.languageEnglish] = [];
+      }
+      groups[verse.languageEnglish].push(verse);
+    });
+    return groups;
+  };
+
+  const languageGroups = getLanguageGroups();
+  const currentLanguage = versesData[languageIndex].languageEnglish;
+  const currentGroup = languageGroups[currentLanguage];
+  
   return (
     <div>
       <div className="flex items-center justify-between space-x-4 mb-16">
@@ -52,37 +109,35 @@ const VerseSlider = () => {
         </p>
       </div>
       <div className="flex justify-center items-center space-x-2 mt-2">
-        {versesData.map((verse, index) => (
+        {currentGroup.map((verse, index) => (
           <span
             key={index}
-            className={`h-3 w-3 rounded-full ${languageIndex === index ? 'bg-gray-700' : 'bg-gray-300'}`}
+            className={`h-3 w-3 rounded-full ${translateIndex === index ? 'bg-gray-700' : 'bg-gray-300'}`}
           ></span>
         ))}
       </div>
-      <br/>
+      <br />
       <div className="flex justify-between space-x-4 md:hidden my-16">
         <PrevButton onClick={goToPrevVerse} />
         <NextButton onClick={goToNextVerse} />
       </div>
-  
-      <div className="mb-12">        
-      <div className="text-center justify-between space-x-4 mb-4">
-      <PrevVerseButton onClick={goToPrevVerse} />
 
-      <div className="inline-block font-bold">
-        {versesData[languageIndex].languageOriginal}{' '}
-        <span className="font-normal capitalize">
-          {versesData[languageIndex].languageOriginal.toLowerCase() !==
-          versesData[languageIndex].languageEnglish.toLowerCase()
-            ? '(' + versesData[languageIndex].languageEnglish + ')'
-            : ''}
-        </span>
-      </div>
+      <div className="mb-12">
+        <div className="text-center justify-between space-x-4 mb-4">
+          <PrevVerseButton onClick={goToPrevVerseLang} />
 
-      <NextVerseButton onClick={goToNextVerse} />
+          <div className="inline-block font-bold">
+            {versesData[languageIndex].languageOriginal}{' '}
+            <span className="font-normal capitalize">
+              {versesData[languageIndex].languageOriginal.toLowerCase() !==
+              versesData[languageIndex].languageEnglish.toLowerCase()
+                ? '(' + versesData[languageIndex].languageEnglish + ')'
+                : ''}
+            </span>
+          </div>
 
-
-    </div>
+          <NextVerseButton onClick={goToNextVerseLang} />
+        </div>
         <div className="text-center text-gray-400">
           <a
             href={versesData[languageIndex].refNameTranslate}
