@@ -7,7 +7,7 @@ import NextButton from './NextButton';
 import PrevButton from './PrevButton';
 import NextVerseButton from './NextVerseButton';
 import PrevVerseButton from './PrevVerseButton';
-
+import { languageGroups } from './VerseUtils';
 import { languageIndexState } from '../atoms';
 import versesData from '../verses.json';
 
@@ -17,19 +17,6 @@ const VerseSlider = () => {
   const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
   const [translateIndex, setTranslateIndex] = useState(0);
 
-  const getLanguageGroups = () => {
-    const groups = {};
-    versesData.forEach((verse) => {
-      if (!groups[verse.languageEnglish]) {
-        groups[verse.languageEnglish] = [];
-      }
-      groups[verse.languageEnglish].push(verse);
-    });
-    return groups;
-  };
-
-  
-  const languageGroups = getLanguageGroups();
   const currentLanguage = versesData[languageIndex].languageEnglish;
   const currentGroup = languageGroups[currentLanguage];
 
@@ -39,7 +26,7 @@ const VerseSlider = () => {
     const nextIndex = (currentIndex + 1) % languages.length;
     const nextLanguage = languages[nextIndex];
 
-    setTranslateIndex(0); // Сбросить translateIndex на 0 при переключении языковой группы
+    setTranslateIndex(0); 
     setLanguageIndex(versesData.findIndex((verse) => verse.languageEnglish === nextLanguage));
 
     history.push('/' + nextLanguage + '/' + languageGroups[nextLanguage][0].shortNameTranslate);
@@ -51,7 +38,7 @@ const VerseSlider = () => {
     const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
     const prevLanguage = languages[prevIndex];
 
-    setTranslateIndex(0); // Сбросить translateIndex на 0 при переключении языковой группы
+    setTranslateIndex(0); 
     setLanguageIndex(versesData.findIndex((verse) => verse.languageEnglish === prevLanguage));
 
     history.push('/' + prevLanguage + '/' + languageGroups[prevLanguage][0].shortNameTranslate);
