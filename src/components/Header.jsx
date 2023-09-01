@@ -28,12 +28,12 @@ function Header() {
 
   return (
     <div className={`flex flex-row py-6 justify-between items-center relative`}>
-      <div className="mx-auto ml-auto font-['Anek_Bangla'] font-bold uppercase text-2xl">
+      <div className="mx-auto font-['Anek_Bangla'] font-bold uppercase text-2xl">
         3:16 John
       </div>
       <div className="flex items-center">
         <button
-          className="text-3xl ml-4"
+          className="text-lg ml-4"
           onClick={toggleDarkMode}
           aria-label="Toggle Dark Mode"
         >
