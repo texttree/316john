@@ -40,7 +40,6 @@ function DarkModeToggle() {
   const toggleDarkMode = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
-    localStorage.setItem("darkMode", newMode.toString());
 
     if (newMode) {
       document.documentElement.classList.add("dark");
@@ -53,6 +52,7 @@ function DarkModeToggle() {
     const savedDarkMode = localStorage.getItem("darkMode");
     if (savedDarkMode) {
       setIsDarkMode(savedDarkMode === "true");
+      localStorage.setItem("darkMode", savedDarkMode === "true");
     }
   }, []);
 
