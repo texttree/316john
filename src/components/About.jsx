@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import Feedback from './Feedback';
-import Modal from './Modal';
-import PrevButton from './PrevButton';
-import Header from './Header';
-import { languageGroups } from './VerseUtils';
+import Feedback from "./Feedback";
+import Modal from "./Modal";
+import PrevButton from "./PrevButton";
+import Header from "./Header";
+import { languageGroups } from "./VerseUtils";
 
-import youtubeImage from '../../public/youtube.png';
-import youtubeHoverImage from '../../public/youtube-hover.png';
+import youtubeImage from "../../public/youtube.png";
+import youtubeHoverImage from "../../public/youtube-hover.png";
 
 function About() {
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ function About() {
           className="font-bold underline text-base"
           onClick={() => setIsOpen(true)}
         >
-          {t('AboutProject')}
+          {t("AboutProject")}
         </button>
       </div>
       <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
@@ -36,10 +36,10 @@ function About() {
           <div className="space-y-10">
             <div className="space-y-5 mx-auto max-w-md">
               <div className="flex flex-col gap-5 justify-center items-center text-center">
-                <div className="text-xl font-bold">{t('AboutProject')}</div>
-                <p className="text-base">{t('AboutProjectText')}</p>
+                <div className="text-xl font-bold">{t("AboutProject")}</div>
+                <p className="text-base">{t("AboutProjectText")}</p>
                 <p className="text-sm">
-                  {`${t('TranslatedLanguage', {
+                  {`${t("TranslatedLanguage", {
                     count: Object.keys(languageGroups).length,
                   })} 7000`}
                 </p>
@@ -61,8 +61,8 @@ function About() {
                 </a>
               </div>
               <div className="flex flex-col gap-5 justify-center items-center text-center">
-                <div className="text-xl font-bold">{t('OurGoal')}</div>
-                <p className="text-base">{t('OurGoalText')}</p>
+                <div className="text-xl font-bold">{t("OurGoal")}</div>
+                <p className="text-base">{t("OurGoalText")}</p>
               </div>
             </div>
             <Feedback />

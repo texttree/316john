@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useRecoilState } from 'recoil';
-import { createBrowserHistory } from 'history';
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useRecoilState } from "recoil";
+import { createBrowserHistory } from "history";
 
-import NextButton from './NextButton';
-import PrevButton from './PrevButton';
-import NextVerseButton from './NextVerseButton';
-import PrevVerseButton from './PrevVerseButton';
-import { languageGroups } from './VerseUtils';
-import { languageIndexState } from '../atoms';
-import versesData from '../verses.json';
+import NextButton from "./NextButton";
+import PrevButton from "./PrevButton";
+import NextVerseButton from "./NextVerseButton";
+import PrevVerseButton from "./PrevVerseButton";
+import { languageGroups } from "./VerseUtils";
+import { languageIndexState } from "../atoms";
+import versesData from "../verses.json";
 
 const VerseSlider = () => {
   let history = createBrowserHistory();
@@ -26,10 +26,17 @@ const VerseSlider = () => {
     const nextIndex = (currentIndex + 1) % languages.length;
     const nextLanguage = languages[nextIndex];
 
-    setTranslateIndex(0); 
-    setLanguageIndex(versesData.findIndex((verse) => verse.languageEnglish === nextLanguage));
+    setTranslateIndex(0);
+    setLanguageIndex(
+      versesData.findIndex((verse) => verse.languageEnglish === nextLanguage)
+    );
 
-    history.push('/' + nextLanguage + '/' + languageGroups[nextLanguage][0].shortNameTranslate);
+    history.push(
+      "/" +
+        nextLanguage +
+        "/" +
+        languageGroups[nextLanguage][0].shortNameTranslate
+    );
   };
 
   const goToPrevVerse = () => {
@@ -38,10 +45,17 @@ const VerseSlider = () => {
     const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
     const prevLanguage = languages[prevIndex];
 
-    setTranslateIndex(0); 
-    setLanguageIndex(versesData.findIndex((verse) => verse.languageEnglish === prevLanguage));
+    setTranslateIndex(0);
+    setLanguageIndex(
+      versesData.findIndex((verse) => verse.languageEnglish === prevLanguage)
+    );
 
-    history.push('/' + prevLanguage + '/' + languageGroups[prevLanguage][0].shortNameTranslate);
+    history.push(
+      "/" +
+        prevLanguage +
+        "/" +
+        languageGroups[prevLanguage][0].shortNameTranslate
+    );
   };
 
   const goToNextVerseLang = () => {
@@ -52,26 +66,28 @@ const VerseSlider = () => {
     const nextNameTranslate = currentGroup[nextIndex].nameTranslate;
     const nextShortNameTranslate = currentGroup[nextIndex].shortNameTranslate;
 
-    setLanguageIndex(versesData.findIndex((verse) => verse.nameTranslate === nextNameTranslate));
+    setLanguageIndex(
+      versesData.findIndex((verse) => verse.nameTranslate === nextNameTranslate)
+    );
 
-    history.push('/' + nextLanguageEnglish + '/' + nextShortNameTranslate);
+    history.push("/" + nextLanguageEnglish + "/" + nextShortNameTranslate);
   };
 
   const goToPrevVerseLang = () => {
-    const prevIndex = (translateIndex - 1 + currentGroup.length) % currentGroup.length;
+    const prevIndex =
+      (translateIndex - 1 + currentGroup.length) % currentGroup.length;
     setTranslateIndex(prevIndex);
 
     const prevLanguageEnglish = currentGroup[prevIndex].languageEnglish;
     const prevNameTranslate = currentGroup[prevIndex].nameTranslate;
     const prevShortNameTranslate = currentGroup[prevIndex].shortNameTranslate;
 
-    setLanguageIndex(versesData.findIndex((verse) => verse.nameTranslate === prevNameTranslate));
+    setLanguageIndex(
+      versesData.findIndex((verse) => verse.nameTranslate === prevNameTranslate)
+    );
 
-    history.push('/' + prevLanguageEnglish + '/' + prevShortNameTranslate);
+    history.push("/" + prevLanguageEnglish + "/" + prevShortNameTranslate);
   };
-
-
-
 
   return (
     <div>
@@ -97,7 +113,9 @@ const VerseSlider = () => {
         {currentGroup.map((verse, index) => (
           <span
             key={index}
-            className={`h-3 w-3 rounded-full ${translateIndex === index ? 'bg-gray-700' : 'bg-gray-300'}`}
+            className={`h-3 w-3 rounded-full ${
+              translateIndex === index ? "bg-gray-700" : "bg-gray-300"
+            }`}
           ></span>
         ))}
       </div>
@@ -112,12 +130,12 @@ const VerseSlider = () => {
           <PrevVerseButton onClick={goToPrevVerseLang} />
 
           <div className="inline-block font-bold">
-            {versesData[languageIndex].languageOriginal}{' '}
+            {versesData[languageIndex].languageOriginal}{" "}
             <span className="font-normal capitalize">
               {versesData[languageIndex].languageOriginal.toLowerCase() !==
               versesData[languageIndex].languageEnglish.toLowerCase()
-                ? '(' + versesData[languageIndex].languageEnglish + ')'
-                : ''}
+                ? "(" + versesData[languageIndex].languageEnglish + ")"
+                : ""}
             </span>
           </div>
 
@@ -128,15 +146,17 @@ const VerseSlider = () => {
             href={versesData[languageIndex].refNameTranslate}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline">
+            className="underline"
+          >
             {versesData[languageIndex].nameTranslate}
-          </a>{' '}
-          {t('By')}{' '}
+          </a>{" "}
+          {t("By")}{" "}
           <a
             href={versesData[languageIndex].refOwner}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline">
+            className="underline"
+          >
             {versesData[languageIndex].owner}
           </a>
         </div>
@@ -144,8 +164,9 @@ const VerseSlider = () => {
           <a
             href={versesData[languageIndex].refOwner}
             target="_blank"
-            rel="noopener noreferrer">
-            {t('License')}
+            rel="noopener noreferrer"
+          >
+            {t("License")}
             {`: ${versesData[languageIndex].license}`}
           </a>
         </div>

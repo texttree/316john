@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Combobox } from '@headlessui/react';
-import { createBrowserHistory } from 'history';
-import { useRecoilState } from 'recoil';
+import { useEffect, useState } from "react";
+import { Combobox } from "@headlessui/react";
+import { createBrowserHistory } from "history";
+import { useRecoilState } from "recoil";
 
-import { languageIndexState } from '../atoms';
-import { filterLangList, langList, searchLanguage } from '../helper';
+import { languageIndexState } from "../atoms";
+import { filterLangList, langList, searchLanguage } from "../helper";
 
 function LanguageSelect() {
   let history = createBrowserHistory();
   const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
   const [selectedLanguage, setSelectedLanguage] = useState({});
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     setSelectedLanguage(
@@ -31,9 +31,10 @@ function LanguageSelect() {
         value={selectedLanguage}
         onChange={(newValue) => {
           setSelectedLanguage(newValue);
-          history.push('/' + newValue.eng);
+          history.push("/" + newValue.eng);
           setLanguageIndex(newValue.index);
-        }}>
+        }}
+      >
         <div className="relative">
           <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-zinc-800 p-2 rounded-full flex w-full text-left">
             <Combobox.Input
@@ -49,7 +50,8 @@ function LanguageSelect() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-11 h-5 cursor-pointer px-3">
+                className="w-11 h-5 cursor-pointer px-3"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -67,10 +69,11 @@ function LanguageSelect() {
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-10 pr-4 ${
                     active
-                      ? 'bg-black dark:bg-zinc-700 text-white dark:text-white'
-                      : 'text-slate-900 dark:text-white'
+                      ? "bg-black dark:bg-zinc-700 text-white dark:text-white"
+                      : "text-slate-900 dark:text-white"
                   }`
-                }>
+                }
+              >
                 {lang.orig}
               </Combobox.Option>
             ))}

@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { langs } from '../constants';
+import { langs } from "../constants";
 
 function LocaleSwitch() {
   const { i18n } = useTranslation();
@@ -11,14 +11,16 @@ function LocaleSwitch() {
       <div className="relative">
         <button
           className="flex w-16 items-center justify-between rounded bg-transparent p-1"
-          onClick={() => setOpen((prev) => !prev)}>
+          onClick={() => setOpen((prev) => !prev)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6">
+            className="w-6 h-6"
+          >
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -28,7 +30,7 @@ function LocaleSwitch() {
           <span>
             {
               langs.filter(
-                (lang) => lang.code === i18n.language.split('-')[0]
+                (lang) => lang.code === i18n.language.split("-")[0]
               )?.[0]?.short
             }
           </span>
@@ -43,7 +45,8 @@ function LocaleSwitch() {
                 onClick={() => {
                   i18n.changeLanguage(lang.code);
                   setOpen(false);
-                }}>
+                }}
+              >
                 {lang.name}
               </li>
             ))}
