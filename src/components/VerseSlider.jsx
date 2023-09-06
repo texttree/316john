@@ -5,8 +5,6 @@ import { createBrowserHistory } from "history";
 
 import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
-import NextVerseButton from "./NextVerseButton";
-import PrevVerseButton from "./PrevVerseButton";
 import { languageGroups } from "./verseUtils";
 import { languageIndexState } from "../atoms";
 import versesData from "../verses.json";
@@ -127,7 +125,7 @@ const VerseSlider = () => {
 
       <div className="mb-12">
         <div className="text-center justify-between space-x-4 mb-4">
-          <PrevVerseButton onClick={goToPrevVerseLang} />
+          <PrevButton onClick={goToPrevVerseLang} classes={"w-3 h-3"} />
 
           <div className="inline-block font-bold">
             {versesData[languageIndex].languageOriginal}{" "}
@@ -138,8 +136,7 @@ const VerseSlider = () => {
                 : ""}
             </span>
           </div>
-
-          <NextVerseButton onClick={goToNextVerseLang} />
+          <NextButton onClick={goToNextVerseLang} classes={"w-3 h-3"} />
         </div>
         <div className="text-center text-gray-400">
           <a
