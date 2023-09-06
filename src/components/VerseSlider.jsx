@@ -7,7 +7,7 @@ import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
 import NextVerseButton from "./NextVerseButton";
 import PrevVerseButton from "./PrevVerseButton";
-import { languageGroups } from "./VerseUtils";
+import { languageGroups } from "./verseUtils";
 import { languageIndexState } from "../atoms";
 import versesData from "../verses.json";
 
