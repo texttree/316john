@@ -20,17 +20,12 @@ const VerseSlider = () => {
 
   const loadVerseFromUrl = () => {
     const currentUrl = window.location.pathname;
-    console.log(currentUrl);
 
     const urlParts = currentUrl.split("/");
-    console.log(urlParts);
     if (urlParts.length >= 3) {
       const language = urlParts[1];
       const verseId = urlParts[2];
-      console.log(language);
-      console.log(verseId);
 
-      console.log(versesData);
       const foundVerseIndex = versesData.findIndex((verse) => {
         return (
           verse.languageEnglish.toLowerCase() === language.toLowerCase() &&
@@ -38,7 +33,6 @@ const VerseSlider = () => {
         );
       });
 
-      console.log(foundVerseIndex);
       if (foundVerseIndex !== -1) {
         setLanguageIndex(foundVerseIndex);
       }
