@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
 import { createBrowserHistory } from "history";
@@ -17,6 +17,37 @@ const VerseSlider = () => {
 
   const currentLanguage = versesData[languageIndex].languageEnglish;
   const currentGroup = languageGroups[currentLanguage];
+
+  const loadVerseFromUrl = () => {
+    const currentUrl = window.location.pathname;
+    console.log(currentUrl);
+
+    const urlParts = currentUrl.split("/");
+    console.log(urlParts);
+    if (urlParts.length >= 3) {
+      const language = urlParts[1];
+      const verseId = urlParts[2];
+      console.log(language);
+      console.log(verseId);
+
+      console.log(versesData);
+      const foundVerseIndex = versesData.findIndex((verse) => {
+        return (
+          verse.languageEnglish.toLowerCase() === language.toLowerCase() &&
+          verse.shortNameTranslate.toLowerCase() === verseId.toLowerCase()
+        );
+      });
+
+      console.log(foundVerseIndex);
+      if (foundVerseIndex !== -1) {
+        setLanguageIndex(foundVerseIndex);
+      }
+    }
+  };
+
+  useEffect(() => {
+    loadVerseFromUrl();
+  }, []);
 
   const goToNextVerse = () => {
     const languages = Object.keys(languageGroups);
