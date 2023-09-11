@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const PrevButton = ({ onClick, classes }) => (
   <button
-    className="bg-zinc-100 dark:bg-zinc-800 rounded-full p-3"
+    className="bg-zinc-100 dark:bg-[#1D1F34] rounded-full p-3"
     onClick={onClick}
   >
     <svg
