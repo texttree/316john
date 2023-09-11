@@ -116,7 +116,7 @@ const VerseSlider = () => {
     <div>
       <div className="flex items-center justify-between space-x-4 mb-16">
         <div className="hidden md:block">
-          <PrevButton onClick={goToPrevVerse} />
+          <PrevButton onClick={goToPrevVerseLang} />
         </div>
         <div className="mx-4 max-w-lg h-84 items-center justify-center rounded-lg hidden md:block">
           <p className="text-3xl leading-tight text-center verse">
@@ -124,7 +124,7 @@ const VerseSlider = () => {
           </p>
         </div>
         <div className="hidden md:block">
-          <NextButton onClick={goToNextVerse} />
+          <NextButton onClick={goToNextVerseLang} />
         </div>
       </div>
       <div className="w-full rounded-lg md:hidden mb-4">
@@ -144,13 +144,13 @@ const VerseSlider = () => {
       </div>
       <br />
       <div className="flex justify-between space-x-4 md:hidden my-16">
-        <PrevButton onClick={goToPrevVerse} />
-        <NextButton onClick={goToNextVerse} />
+        <PrevButton onClick={goToPrevVerseLang} />
+        <NextButton onClick={goToNextVerseLang   } />
       </div>
 
       <div className="mb-12">
         <div className="text-center justify-between space-x-4 mb-4">
-          <PrevButton onClick={goToPrevVerseLang} classes={"w-3 h-3"} />
+          <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
 
           <div className="inline-block font-bold">
             {versesData[languageIndex].languageOriginal}{" "}
@@ -161,7 +161,7 @@ const VerseSlider = () => {
                 : ""}
             </span>
           </div>
-          <NextButton onClick={goToNextVerseLang} classes={"w-3 h-3"} />
+          <NextButton onClick={goToNextVerse} classes={"w-3 h-3"} />
         </div>
         <div className="text-center text-gray-400">
           <a
