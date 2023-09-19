@@ -5,7 +5,7 @@ import Feedback from "./Feedback";
 import Modal from "./Modal";
 import PrevButton from "./PrevButton";
 import Header from "./Header";
-import { languageGroups } from "./verseUtils";
+import { languageGroups, countVerse } from "./verseUtils";
 
 const youtubeIconSVG = (
   <svg
@@ -37,7 +37,10 @@ function About() {
         <div className="mx-auto max-w-4xl px-7 pb-10 h-full space-y-20">
           <div className="relative">
             <div className="absolute translate-y-1/2 z-10">
-              <PrevButton onClick={() => setIsOpen(false)} classes="w-4 h-4" />
+              <PrevButton
+                onClick={() => setIsOpen(false)}
+                className="w-10 h-10"
+              />
             </div>
             <Header />
           </div>
@@ -51,6 +54,11 @@ function About() {
                   {`${t("TranslatedLanguage", {
                     count: Object.keys(languageGroups).length,
                   })} 7000`}
+                </p>
+                <p className="text-sm mt-[-20px]">
+                  {`${t("CountVerse", {
+                    count: countVerse,
+                  })}`}
                 </p>
               </div>
               <div className="flex items-center justify-center">
