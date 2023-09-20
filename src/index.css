@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;700&family=Inter:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,12 +6,256 @@
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
   }
 }
 
 .verse {
-  font-family: 'Anek Bangla', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+  font-family: "Anek Bangla", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
     sans-serif;
+}
+
+#dots {
+  display: flex;
+  gap: 10px;
+  margin: 10px;
+}
+
+#dots span {
+  border: 7px solid #aaa;
+  border-radius: 100px;
+  width: 0px;
+  height: 0px;
+  display: inline-block;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+#dots span:nth-child(1),
+#dots span:nth-child(7) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+#dots span:nth-child(4) {
+  border-color: #333;
+}
+
+#dots span:nth-child(2),
+#dots span:nth-child(6) {
+  opacity: 0.7;
+  transform: scale(0.6);
+}
+
+#dots.rw span:nth-child(1) {
+  animation-name: dotrw1;
+}
+#dots.rw span:nth-child(2) {
+  animation-name: dotrw2;
+}
+#dots.rw span:nth-child(3) {
+  animation-name: dotrw3;
+}
+#dots.rw span:nth-child(4) {
+  animation-name: dotrw4;
+}
+#dots.rw span:nth-child(5) {
+  animation-name: dotrw5;
+}
+#dots.rw span:nth-child(6) {
+  animation-name: dotrw6;
+}
+#dots.rw span:nth-child(7) {
+  animation-name: dotrw7;
+}
+
+@keyframes dotrw1 {
+  from {
+    transform: translateX(0px) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(22px) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotrw2 {
+  from {
+    transform: translateX(0px) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(22px) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotrw3 {
+  from {
+    transform: translateX(0px) scale(0.6);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(22px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dotrw4 {
+  from {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(22px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dotrw5 {
+  from {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(22px) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotrw6 {
+  from {
+    transform: translateX(0px) scale(0.6);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(22px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes dotrw7 {
+  from {
+    transform: translateX(0px) scale(0.6);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(22px) scale(0);
+    opacity: 0;
+  }
+}
+
+#dots.lw span:nth-child(1) {
+  animation-name: dotlw1;
+}
+#dots.lw span:nth-child(2) {
+  animation-name: dotlw2;
+}
+#dots.lw span:nth-child(3) {
+  animation-name: dotlw3;
+}
+#dots.lw span:nth-child(4) {
+  animation-name: dotlw4;
+}
+#dots.lw span:nth-child(5) {
+  animation-name: dotlw5;
+}
+#dots.lw span:nth-child(6) {
+  animation-name: dotlw6;
+}
+#dots.lw span:nth-child(7) {
+  animation-name: dotlw7;
+}
+
+@keyframes dotlw7 {
+  from {
+    transform: translateX(22px) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0px) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotlw6 {
+  from {
+    transform: translateX(22px) scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0px) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotlw5 {
+  from {
+    transform: translateX(22px) scale(0.6);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dotlw4 {
+  from {
+    transform: translateX(22px) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dotlw3 {
+  from {
+    transform: translateX(22px) scale(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(0px) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotlw2 {
+  from {
+    transform: translateX(22px) scale(0.6);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(0px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes dotlw1 {
+  from {
+    transform: translateX(22px) scale(0.6);
+    opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(0px) scale(0);
+    opacity: 0;
+  }
 }
