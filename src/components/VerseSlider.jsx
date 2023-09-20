@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
 import { createBrowserHistory } from "history";
@@ -6,15 +6,16 @@ import { createBrowserHistory } from "history";
 import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
 import { languageGroups } from "./verseUtils";
-import { languageIndexState } from "../atoms";
+import { languageIndexState, translateIndexState } from "../atoms";
 import versesData from "../verses.json";
 
 const VerseSlider = () => {
   let history = createBrowserHistory();
   const { t } = useTranslation();
   const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
-  const [translateIndex, setTranslateIndex] = useState(0);
-
+  const [translateIndex, setTranslateIndex] =
+    useRecoilState(translateIndexState);
+  const [timer, setTimer] = useState(null);
   const currentLanguage = versesData[languageIndex].languageEnglish;
   const currentGroup = languageGroups[currentLanguage];
 
@@ -43,42 +44,32 @@ const VerseSlider = () => {
     loadVerseFromUrl();
   }, []);
 
-  const goToNextVerse = () => {
-    const languages = Object.keys(languageGroups);
-    const currentIndex = languages.indexOf(currentLanguage);
-    const nextIndex = (currentIndex + 1) % languages.length;
-    const nextLanguage = languages[nextIndex];
-
-    setTranslateIndex(0);
-    setLanguageIndex(
-      versesData.findIndex((verse) => verse.languageEnglish === nextLanguage)
-    );
-
-    history.push(
-      "/" +
-        nextLanguage +
-        "/" +
-        languageGroups[nextLanguage][0].shortNameTranslate
-    );
+  const handleNextButtonClick = () => {
+    const dots = document.querySelector("#dots");
+    if (dots) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      dots.classList.add("rw");
+      const newTimer = setTimeout(() => {
+        dots.classList.remove("rw");
+      }, 200);
+      setTimer(newTimer);
+    }
   };
 
-  const goToPrevVerse = () => {
-    const languages = Object.keys(languageGroups);
-    const currentIndex = languages.indexOf(currentLanguage);
-    const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
-    const prevLanguage = languages[prevIndex];
-
-    setTranslateIndex(0);
-    setLanguageIndex(
-      versesData.findIndex((verse) => verse.languageEnglish === prevLanguage)
-    );
-
-    history.push(
-      "/" +
-        prevLanguage +
-        "/" +
-        languageGroups[prevLanguage][0].shortNameTranslate
-    );
+  const handlePrevButtonClick = () => {
+    const dots = document.querySelector("#dots");
+    if (dots) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      dots.classList.add("rw");
+      const newTimer = setTimeout(() => {
+        dots.classList.remove("rw");
+      }, 200);
+      setTimer(newTimer);
+    }
   };
 
   const goToNextVerseLang = () => {
@@ -94,6 +85,16 @@ const VerseSlider = () => {
     );
 
     history.push("/" + nextLanguageEnglish + "/" + nextShortNameTranslate);
+  };
+
+  const handleNextButtonClickCombined = () => {
+    handleNextButtonClick();
+    goToNextVerseLang();
+  };
+
+  const handlePrevButtonClickCombined = () => {
+    handlePrevButtonClick();
+    goToPrevVerseLang();
   };
 
   const goToPrevVerseLang = () => {
@@ -112,57 +113,76 @@ const VerseSlider = () => {
     history.push("/" + prevLanguageEnglish + "/" + prevShortNameTranslate);
   };
 
+  const renderCircles = () => {
+    const circles = [];
+    if (currentGroup.length < 4) {
+      for (let i = 0; i < currentGroup.length; i++) {
+        const isActive = i === translateIndex;
+        circles.push(
+          <div
+            key={i}
+            className={`h-3 w-3 rounded-full ${
+              isActive ? "bg-[#333]" : "bg-[#aaa]"
+            }`}
+          ></div>
+        );
+      }
+    } else {
+      circles.push(
+        <div id="dots" className="mt-[-40px]">
+          <span id="dot1"></span>
+          <span id="dot2"></span>
+          <span id="dot3"></span>
+          <span id="dot4"></span>
+          <span id="dot5"></span>
+          <span id="dot6"></span>
+          <span id="dot7"></span>
+        </div>
+      );
+    }
+
+    return circles;
+  };
+
   return (
     <div>
-      <div className="flex items-center justify-between space-x-4 mb-16">
+      <div className="flex items-start justify-between space-x-4 mb-16">
         <div className="hidden md:block">
-          <PrevButton onClick={goToPrevVerseLang} />
+          <PrevButton onClick={handlePrevButtonClickCombined} />
         </div>
-        <div className="mx-4 max-w-lg h-84 items-center justify-center rounded-lg hidden md:block">
+        <div className="mx-4 max-w-lg items-center justify-center rounded-lg hidden md:block">
           <p className="text-3xl leading-tight text-center verse">
             {versesData[languageIndex].verse}
           </p>
         </div>
         <div className="hidden md:block">
-          <NextButton onClick={goToNextVerseLang} />
+          <NextButton onClick={handleNextButtonClickCombined} />
         </div>
       </div>
-      <div className="w-full rounded-lg md:hidden mb-4">
-        <p className="text-3xl leading-tight text-center verse">
-          {versesData[languageIndex].verse}
-        </p>
-      </div>
-      <div className="flex justify-center items-center space-x-2 mt-2">
-        {currentGroup.map((verse, index) => (
-          <span
-            key={index}
-            className={`h-3 w-3 rounded-full ${
-              translateIndex === index ? "bg-gray-700" : "bg-gray-300"
-            }`}
-          ></span>
-        ))}
-      </div>
-      <br />
-      <div className="flex justify-between space-x-4 md:hidden my-16">
-        <PrevButton onClick={goToPrevVerseLang} />
-        <NextButton onClick={goToNextVerseLang   } />
+
+      <div className="relative">
+        <div className="w-full rounded-lg md:hidden mb-4">
+          <p className="text-3xl leading-tight text-center verse">
+            {versesData[languageIndex].verse}
+          </p>
+        </div>
+
+        <div className="flex justify-center items-center space-x-2 mt-2 mt-[-40px]">
+          {renderCircles()}
+        </div>
+
+        <div className="text-center text-gray-500 text-sm mt-2">
+          {`${translateIndex + 1}/${currentGroup.length}`}
+        </div>
+        <br />
+        <div className="flex justify-between space-x-4 md:hidden my-16">
+          <PrevButton onClick={handlePrevButtonClickCombined} />
+          <NextButton onClick={handlePrevButtonClickCombined} />
+        </div>
       </div>
 
       <div className="mb-12">
-        <div className="text-center justify-between space-x-4 mb-4">
-          <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
-
-          <div className="inline-block font-bold">
-            {versesData[languageIndex].languageOriginal}{" "}
-            <span className="font-normal capitalize">
-              {versesData[languageIndex].languageOriginal.toLowerCase() !==
-              versesData[languageIndex].languageEnglish.toLowerCase()
-                ? "(" + versesData[languageIndex].languageEnglish + ")"
-                : ""}
-            </span>
-          </div>
-          <NextButton onClick={goToNextVerse} classes={"w-3 h-3"} />
-        </div>
+        <div className="text-center justify-between space-x-4 mb-4"></div>
         <div className="text-center text-gray-400">
           <a
             href={versesData[languageIndex].refNameTranslate}
