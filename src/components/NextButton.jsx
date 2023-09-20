@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 
-const NextButton = ({ onClick, classes }) => (
+const NextButton = ({ onClick, className }) => (
   <button
-    className="bg-zinc-100 dark:bg-[#1D1F34] rounded-full p-3"
+    className={`bg-zinc-100 dark:bg-[#1D1F34] rounded-full p-3  ${className}`}
     onClick={onClick}
   >
     <svg
@@ -11,7 +11,7 @@ const NextButton = ({ onClick, classes }) => (
       viewBox="0 0 24 24"
       strokeWidth="1.5"
       stroke="currentColor"
-      className={classes}
+      className="w-full h-full"
     >
       <path
         strokeLinecap="round"
@@ -24,10 +24,12 @@ const NextButton = ({ onClick, classes }) => (
 
 NextButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  classes: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };
+
 NextButton.defaultProps = {
   onClick: () => {},
-  classes: "w-6 h-6",
+  className: "w-12 h-12",
 };
+
 export default NextButton;
