@@ -6,7 +6,6 @@ import { useRecoilState } from "recoil";
 import { languageIndexState, translateIndexState } from "../atoms";
 import { filterLangList, langList, searchLanguage } from "../helper";
 import { languageGroups } from "./verseUtils";
-import versesData from "../verses.json";
 
 import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
@@ -19,8 +18,9 @@ function LanguageSelect() {
 
   const [selectedLanguage, setSelectedLanguage] = useState({});
   const [query, setQuery] = useState("");
-  const currentLanguage = versesData[languageIndex].languageEnglish;
+  const currentLanguage = Object.keys(languageGroups)[languageIndex];
   const [labelVisible, setLabelVisible] = useState(true);
+
   useEffect(() => {
     setSelectedLanguage(
       langList.filter((el) => el.index === languageIndex)?.[0]
@@ -34,41 +34,32 @@ function LanguageSelect() {
     }
   }, [history.location.pathname, setLanguageIndex]);
 
+  const changeLanguageGroup = (newLanguageIndex) => {
+    setTranslateIndex(0);
+    setLanguageIndex(newLanguageIndex);
+
+    const languages = Object.keys(languageGroups);
+    const newLanguage = languages[newLanguageIndex];
+    history.push(
+      "/" +
+        newLanguage +
+        "/" +
+        languageGroups[newLanguage][0].shortNameTranslate
+    );
+  };
+
   const goToNextVerse = () => {
     const languages = Object.keys(languageGroups);
     const currentIndex = languages.indexOf(currentLanguage);
     const nextIndex = (currentIndex + 1) % languages.length;
-    const nextLanguage = languages[nextIndex];
-
-    setTranslateIndex(0);
-    setLanguageIndex(
-      versesData.findIndex((verse) => verse.languageEnglish === nextLanguage)
-    );
-    history.push(
-      "/" +
-        nextLanguage +
-        "/" +
-        languageGroups[nextLanguage][0].shortNameTranslate
-    );
+    changeLanguageGroup(nextIndex);
   };
 
   const goToPrevVerse = () => {
     const languages = Object.keys(languageGroups);
     const currentIndex = languages.indexOf(currentLanguage);
     const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
-    const prevLanguage = languages[prevIndex];
-
-    setTranslateIndex(0);
-    setLanguageIndex(
-      versesData.findIndex((verse) => verse.languageEnglish === prevLanguage)
-    );
-
-    history.push(
-      "/" +
-        prevLanguage +
-        "/" +
-        languageGroups[prevLanguage][0].shortNameTranslate
-    );
+    changeLanguageGroup(prevIndex);
   };
 
   return (

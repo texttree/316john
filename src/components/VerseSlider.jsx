@@ -7,7 +7,6 @@ import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
 import { languageGroups } from "./verseUtils";
 import { languageIndexState, translateIndexState } from "../atoms";
-import versesData from "../verses.json";
 
 const VerseSlider = () => {
   let history = createBrowserHistory();
@@ -16,24 +15,19 @@ const VerseSlider = () => {
   const [translateIndex, setTranslateIndex] =
     useRecoilState(translateIndexState);
   const [timer, setTimer] = useState(null);
-  const currentLanguage = versesData[languageIndex].languageEnglish;
+  const currentLanguage = Object.keys(languageGroups)[languageIndex];
   const currentGroup = languageGroups[currentLanguage];
 
   const loadVerseFromUrl = () => {
     const currentUrl = window.location.pathname;
-
     const urlParts = currentUrl.split("/");
     if (urlParts.length >= 3) {
       const language = urlParts[1];
       const verseId = urlParts[2];
-
-      const foundVerseIndex = versesData.findIndex((verse) => {
-        return (
-          verse.languageEnglish.toLowerCase() === language.toLowerCase() &&
+      const foundVerseIndex = languageGroups[language]?.findIndex(
+        (verse) =>
           verse.shortNameTranslate.toLowerCase() === verseId.toLowerCase()
-        );
-      });
-
+      );
       if (foundVerseIndex !== -1) {
         setLanguageIndex(foundVerseIndex);
       }
@@ -72,45 +66,31 @@ const VerseSlider = () => {
     }
   };
 
-  const goToNextVerseLang = () => {
-    const nextIndex = (translateIndex + 1) % currentGroup.length;
-    setTranslateIndex(nextIndex);
-
-    const nextLanguageEnglish = currentGroup[nextIndex].languageEnglish;
-    const nextNameTranslate = currentGroup[nextIndex].nameTranslate;
-    const nextShortNameTranslate = currentGroup[nextIndex].shortNameTranslate;
-
-    setLanguageIndex(
-      versesData.findIndex((verse) => verse.nameTranslate === nextNameTranslate)
-    );
-
-    history.push("/" + nextLanguageEnglish + "/" + nextShortNameTranslate);
-  };
-
   const handleNextButtonClickCombined = () => {
     handleNextButtonClick();
-    goToNextVerseLang();
+    goToNextVerseInGroup();
   };
 
   const handlePrevButtonClickCombined = () => {
     handlePrevButtonClick();
-    goToPrevVerseLang();
+    goToPrevVerseInGroup();
   };
 
-  const goToPrevVerseLang = () => {
+  const goToNextVerseInGroup = () => {
+    const nextIndex = (translateIndex + 1) % currentGroup.length;
+    setTranslateIndex(nextIndex);
+    const nextNameTranslate = currentGroup[nextIndex].nameTranslate;
+    const nextShortNameTranslate = currentGroup[nextIndex].shortNameTranslate;
+    history.push("/" + currentLanguage + "/" + nextShortNameTranslate);
+  };
+
+  const goToPrevVerseInGroup = () => {
     const prevIndex =
       (translateIndex - 1 + currentGroup.length) % currentGroup.length;
     setTranslateIndex(prevIndex);
-
-    const prevLanguageEnglish = currentGroup[prevIndex].languageEnglish;
     const prevNameTranslate = currentGroup[prevIndex].nameTranslate;
     const prevShortNameTranslate = currentGroup[prevIndex].shortNameTranslate;
-
-    setLanguageIndex(
-      versesData.findIndex((verse) => verse.nameTranslate === prevNameTranslate)
-    );
-
-    history.push("/" + prevLanguageEnglish + "/" + prevShortNameTranslate);
+    history.push("/" + currentLanguage + "/" + prevShortNameTranslate);
   };
 
   const renderCircles = () => {
@@ -140,7 +120,6 @@ const VerseSlider = () => {
         </div>
       );
     }
-
     return circles;
   };
 
@@ -152,7 +131,7 @@ const VerseSlider = () => {
         </div>
         <div className="mx-4 max-w-lg items-center justify-center rounded-lg hidden md:block">
           <p className="text-3xl leading-tight text-center verse">
-            {versesData[languageIndex].verse}
+            {currentGroup[translateIndex].verse}
           </p>
         </div>
         <div className="hidden md:block">
@@ -163,7 +142,7 @@ const VerseSlider = () => {
       <div className="relative">
         <div className="w-full rounded-lg md:hidden mb-4">
           <p className="text-3xl leading-tight text-center verse">
-            {versesData[languageIndex].verse}
+            {currentGroup[translateIndex].verse}
           </p>
         </div>
 
@@ -185,31 +164,31 @@ const VerseSlider = () => {
         <div className="text-center justify-between space-x-4 mb-4"></div>
         <div className="text-center text-gray-400">
           <a
-            href={versesData[languageIndex].refNameTranslate}
+            href={currentGroup[translateIndex].refNameTranslate}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
           >
-            {versesData[languageIndex].nameTranslate}
+            {currentGroup[translateIndex].nameTranslate}
           </a>{" "}
           {t("By")}{" "}
           <a
-            href={versesData[languageIndex].refOwner}
+            href={currentGroup[translateIndex].refOwner}
             target="_blank"
             rel="noopener noreferrer"
             className="underline"
           >
-            {versesData[languageIndex].owner}
+            {currentGroup[translateIndex].owner}
           </a>
         </div>
         <div className="text-center text-gray-400 underline">
           <a
-            href={versesData[languageIndex].refOwner}
+            href={currentGroup[translateIndex].refOwner}
             target="_blank"
             rel="noopener noreferrer"
           >
             {t("License")}
-            {`: ${versesData[languageIndex].license}`}
+            {`: ${currentGroup[translateIndex].license}`}
           </a>
         </div>
       </div>
