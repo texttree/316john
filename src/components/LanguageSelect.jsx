@@ -87,7 +87,7 @@ function LanguageSelect() {
 
             <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-[#1D1F34] p-2 rounded-full flex w-full text-left">
               <div className="absolute flex items-baseline gap-x-3">
-                <label
+                <span
                   className={`pl-3 text-sm pt-2 ${
                     labelVisible
                       ? "opacity-100"
@@ -95,16 +95,18 @@ function LanguageSelect() {
                   } transition-opacity duration-300 flex-shrink-0`}
                 >
                   {selectedLanguage ? selectedLanguage.orig : ""}
-                </label>
-                <label
-                  className={`text-xs text-gray-500 pt-3 ${
-                    labelVisible
-                      ? "opacity-100"
-                      : "opacity-0 pointer-events-none"
-                  } transition-opacity duration-300 flex-shrink-0`}
-                >
-                  {selectedLanguage ? selectedLanguage.eng : ""}
-                </label>
+                </span>
+                {selectedLanguage.orig !== "English" && (
+                  <span
+                    className={`text-xs text-gray-500 pt-3 ${
+                      labelVisible
+                        ? "opacity-100"
+                        : "opacity-0 pointer-events-none"
+                    } transition-opacity duration-300 flex-shrink-0`}
+                  >
+                    {selectedLanguage ? selectedLanguage.eng : ""}
+                  </span>
+                )}
               </div>
 
               <Combobox.Input
