@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { createBrowserHistory } from "history";
 
 import NextButton from "./NextButton";
@@ -11,10 +11,13 @@ import { languageIndexState, translateIndexState } from "../atoms";
 const VerseSlider = () => {
   let history = createBrowserHistory();
   const { t } = useTranslation();
-  const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
+
+  const languageIndex = useRecoilValue(languageIndexState);
   const [translateIndex, setTranslateIndex] =
     useRecoilState(translateIndexState);
+
   const [timer, setTimer] = useState(null);
+
   const currentLanguage = Object.keys(languageGroups)[languageIndex];
   const currentGroup = languageGroups[currentLanguage];
 
@@ -28,8 +31,9 @@ const VerseSlider = () => {
         (verse) =>
           verse.shortNameTranslate.toLowerCase() === verseId.toLowerCase()
       );
+
       if (foundVerseIndex !== -1) {
-        setLanguageIndex(foundVerseIndex);
+        setTranslateIndex(foundVerseIndex);
       }
     }
   };
@@ -79,7 +83,6 @@ const VerseSlider = () => {
   const goToNextVerseInGroup = () => {
     const nextIndex = (translateIndex + 1) % currentGroup.length;
     setTranslateIndex(nextIndex);
-    const nextNameTranslate = currentGroup[nextIndex].nameTranslate;
     const nextShortNameTranslate = currentGroup[nextIndex].shortNameTranslate;
     history.push("/" + currentLanguage + "/" + nextShortNameTranslate);
   };
@@ -88,7 +91,6 @@ const VerseSlider = () => {
     const prevIndex =
       (translateIndex - 1 + currentGroup.length) % currentGroup.length;
     setTranslateIndex(prevIndex);
-    const prevNameTranslate = currentGroup[prevIndex].nameTranslate;
     const prevShortNameTranslate = currentGroup[prevIndex].shortNameTranslate;
     history.push("/" + currentLanguage + "/" + prevShortNameTranslate);
   };
