@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { createBrowserHistory } from "history";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 import { languageIndexState, translateIndexState } from "../atoms";
 import { filterLangList, langList, searchLanguage } from "../helper";
@@ -13,8 +13,7 @@ import PrevButton from "./PrevButton";
 function LanguageSelect() {
   let history = createBrowserHistory();
   const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
-  const [translateIndex, setTranslateIndex] =
-    useRecoilState(translateIndexState);
+  const setTranslateIndex = useSetRecoilState(translateIndexState);
 
   const [selectedLanguage, setSelectedLanguage] = useState({});
   const [query, setQuery] = useState("");
