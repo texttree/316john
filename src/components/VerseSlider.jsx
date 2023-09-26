@@ -185,7 +185,7 @@ const VerseSlider = () => {
         </div>
         <div className="text-center text-gray-400 underline">
           <a
-            href={currentGroup[translateIndex].refOwner}
+            href={currentGroup[translateIndex].refLicense}
             target="_blank"
             rel="noopener noreferrer"
           >
