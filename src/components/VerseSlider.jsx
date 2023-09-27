@@ -111,14 +111,14 @@ const VerseSlider = () => {
       }
     } else {
       circles.push(
-        <div id="dots" className="mt-[-40px]">
-          <span id="dot1"></span>
-          <span id="dot2"></span>
-          <span id="dot3"></span>
-          <span id="dot4"></span>
-          <span id="dot5"></span>
-          <span id="dot6"></span>
-          <span id="dot7"></span>
+        <div id="dots" className="mt-[-40px]" key="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
       );
     }
@@ -158,7 +158,7 @@ const VerseSlider = () => {
         <br />
         <div className="flex justify-between space-x-4 md:hidden my-16">
           <PrevButton onClick={handlePrevButtonClickCombined} />
-          <NextButton onClick={handlePrevButtonClickCombined} />
+          <NextButton onClick={handleNextButtonClickCombined} />
         </div>
       </div>
 
