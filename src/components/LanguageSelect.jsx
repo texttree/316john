@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { createBrowserHistory } from "history";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 
-import { languageIndexState, translateIndexState } from "../atoms";
+import { languageIndexState } from "../atoms";
 import { filterLangList, langList, searchLanguage } from "../helper";
-import { languageGroups } from "./verseUtils";
-
-import NextButton from "./NextButton";
-import PrevButton from "./PrevButton";
 
 function LanguageSelect() {
   let history = createBrowserHistory();
   const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
-  const setTranslateIndex = useSetRecoilState(translateIndexState);
 
   const [selectedLanguage, setSelectedLanguage] = useState({});
   const [query, setQuery] = useState("");
-  const currentLanguage = Object.keys(languageGroups)[languageIndex];
   const [labelVisible, setLabelVisible] = useState(true);
 
   useEffect(() => {
@@ -33,34 +27,6 @@ function LanguageSelect() {
     }
   }, [history.location.pathname, setLanguageIndex]);
 
-  const changeLanguageGroup = (newLanguageIndex) => {
-    setTranslateIndex(0);
-    setLanguageIndex(newLanguageIndex);
-
-    const languages = Object.keys(languageGroups);
-    const newLanguage = languages[newLanguageIndex];
-    history.push(
-      "/" +
-        newLanguage +
-        "/" +
-        languageGroups[newLanguage][0].shortNameTranslate
-    );
-  };
-
-  const goToNextVerse = () => {
-    const languages = Object.keys(languageGroups);
-    const currentIndex = languages.indexOf(currentLanguage);
-    const nextIndex = (currentIndex + 1) % languages.length;
-    changeLanguageGroup(nextIndex);
-  };
-
-  const goToPrevVerse = () => {
-    const languages = Object.keys(languageGroups);
-    const currentIndex = languages.indexOf(currentLanguage);
-    const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
-    changeLanguageGroup(prevIndex);
-  };
-
   return (
     <div className="mt-5 mb-9 sm:my-14 lg:my-22 w-full sm:w-96 mx-auto">
       <Combobox
@@ -73,8 +39,6 @@ function LanguageSelect() {
       >
         <div className="relative">
           <div className="flex items-center gap-x-4">
-            <PrevButton onClick={goToPrevVerse} className={"w-16 h-12"} />
-
             <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-[#1D1F34] p-2 rounded-full flex w-full text-left">
               <div className="absolute flex items-baseline gap-x-3">
                 <span
@@ -123,8 +87,6 @@ function LanguageSelect() {
                 </svg>
               </Combobox.Button>
             </div>
-
-            <NextButton onClick={goToNextVerse} className={"w-16 h-12 "} />
           </div>
 
           <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-[#1D1F34] text-base focus:outline-none shadow-md">

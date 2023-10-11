@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { createBrowserHistory } from "history";
 
 import NextButton from "./NextButton";
@@ -12,9 +12,9 @@ const VerseSlider = () => {
   let history = createBrowserHistory();
   const { t } = useTranslation();
 
-  const languageIndex = useRecoilValue(languageIndexState);
   const [translateIndex, setTranslateIndex] =
     useRecoilState(translateIndexState);
+  const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
 
   const [timer, setTimer] = useState(null);
 
@@ -95,6 +95,34 @@ const VerseSlider = () => {
     history.push("/" + currentLanguage + "/" + prevShortNameTranslate);
   };
 
+  const changeLanguageGroup = (newLanguageIndex) => {
+    setTranslateIndex(0);
+    setLanguageIndex(newLanguageIndex);
+
+    const languages = Object.keys(languageGroups);
+    const newLanguage = languages[newLanguageIndex];
+    history.push(
+      "/" +
+        newLanguage +
+        "/" +
+        languageGroups[newLanguage][0].shortNameTranslate
+    );
+  };
+
+  const goToNextVerse = () => {
+    const languages = Object.keys(languageGroups);
+    const currentIndex = languages.indexOf(currentLanguage);
+    const nextIndex = (currentIndex + 1) % languages.length;
+    changeLanguageGroup(nextIndex);
+  };
+
+  const goToPrevVerse = () => {
+    const languages = Object.keys(languageGroups);
+    const currentIndex = languages.indexOf(currentLanguage);
+    const prevIndex = (currentIndex - 1 + languages.length) % languages.length;
+    changeLanguageGroup(prevIndex);
+  };
+
   const renderCircles = () => {
     const circles = [];
     if (currentGroup.length < 4) {
@@ -163,7 +191,20 @@ const VerseSlider = () => {
       </div>
 
       <div className="mb-12">
-        <div className="text-center justify-between space-x-4 mb-4"></div>
+        <div className="text-center justify-between space-x-4 mb-4">
+          {" "}
+          <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
+          <div className="inline-block font-bold">
+            {currentGroup[translateIndex].languageOriginal}{" "}
+            <span className="font-normal capitalize">
+              {currentGroup[translateIndex].languageOriginal.toLowerCase() !==
+              currentGroup[translateIndex].languageEnglish.toLowerCase()
+                ? "(" + currentGroup[translateIndex].languageEnglish + ")"
+                : ""}
+            </span>
+          </div>
+          <NextButton onClick={goToNextVerse} classes={"w-3 h-3"} />
+        </div>
         <div className="text-center text-gray-400">
           <a
             href={currentGroup[translateIndex].refNameTranslate}
