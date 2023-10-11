@@ -5,7 +5,7 @@ function Header() {
   return (
     <div className="flex flex-row py-6 justify-between items-center relative">
       <div className="flex-grow ml-28 md:ml-96">
-        <img src="/logo.png" alt="3:16 John" />
+        <img src="/logo.svg" alt="3:16 John" />
       </div>
       <DarkModeToggle />
       <LocaleSwitch />
