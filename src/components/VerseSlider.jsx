@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
 import { createBrowserHistory } from "history";
-
+import { useSwipeable } from "react-swipeable";
 import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
 import { languageGroups } from "./verseUtils";
@@ -153,85 +153,103 @@ const VerseSlider = () => {
     return circles;
   };
 
+  // Обработчик свайпа влево
+  const handleSwipeLeft = () => {
+    handlePrevButtonClick();
+    goToPrevVerseInGroup();
+  };
+
+  // Обработчик свайпа вправо
+  const handleSwipeRight = () => {
+    handleNextButtonClick();
+    goToNextVerseInGroup();
+  };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: handleSwipeLeft,
+    onSwipedRight: handleSwipeRight,
+  });
   return (
     <div>
-      <div className="md:flex items-start justify-between space-x-4 mb-4 hidden">
-        <div>
+      <div {...handlers}>
+        <div className="md:flex items-start justify-between space-x-4 mb-4 hidden">
+          <div>
+            <PrevButton onClick={handlePrevButtonClickCombined} />
+          </div>
+          <div className="mx-4 max-w-lg items-center justify-center rounded-lg">
+            <p className="text-3xl leading-tight text-center verse">
+              {currentGroup[translateIndex].verse}
+            </p>
+          </div>
+          <div>
+            <NextButton onClick={handleNextButtonClickCombined} />
+          </div>
+        </div>
+        <div className="flex justify-between space-x-4 md:hidden my-4">
           <PrevButton onClick={handlePrevButtonClickCombined} />
-        </div>
-        <div className="mx-4 max-w-lg items-center justify-center rounded-lg">
-          <p className="text-3xl leading-tight text-center verse">
-            {currentGroup[translateIndex].verse}
-          </p>
-        </div>
-        <div>
           <NextButton onClick={handleNextButtonClickCombined} />
         </div>
-      </div>
-      <div className="flex justify-between space-x-4 md:hidden my-4">
-        <PrevButton onClick={handlePrevButtonClickCombined} />
-        <NextButton onClick={handleNextButtonClickCombined} />
-      </div>
-      <div className="relative">
-        <div className="w-full rounded-lg md:hidden mb-4">
-          <p className="text-3xl leading-tight text-center verse">
-            {currentGroup[translateIndex].verse}
-          </p>
-        </div>
-
-        <div className="flex justify-center items-center space-x-2 mt-2">
-          {renderCircles()}
-        </div>
-
-        <div className="text-center text-gray-500 text-sm mt-2">
-          {`${translateIndex + 1}/${currentGroup.length}`}
-        </div>
-        <br />
-      </div>
-
-      <div className="mb-12">
-        <div className="text-center justify-between space-x-4 mb-4">
-          {" "}
-          <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
-          <div className="inline-block font-bold">
-            {currentGroup[translateIndex].languageOriginal}{" "}
-            <span className="font-normal capitalize">
-              {currentGroup[translateIndex].languageOriginal.toLowerCase() !==
-              currentGroup[translateIndex].languageEnglish.toLowerCase()
-                ? "(" + currentGroup[translateIndex].languageEnglish + ")"
-                : ""}
-            </span>
+        <div className="relative">
+          <div className="w-full rounded-lg md:hidden mb-4">
+            <p className="text-3xl leading-tight text-center verse">
+              {currentGroup[translateIndex].verse}
+            </p>
           </div>
-          <NextButton onClick={goToNextVerse} classes={"w-3 h-3"} />
+
+          <div className="flex justify-center items-center space-x-2 mt-2">
+            {renderCircles()}
+          </div>
+
+          <div className="text-center text-gray-500 text-sm mt-2">
+            {`${translateIndex + 1}/${currentGroup.length}`}
+          </div>
+          <br />
         </div>
-        <div className="text-center text-gray-400">
-          <a
-            href={currentGroup[translateIndex].refNameTranslate}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            {currentGroup[translateIndex].nameTranslate}
-          </a>{" "}
-          {t("By")}{" "}
-          <a
-            href={currentGroup[translateIndex].refOwner}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            {currentGroup[translateIndex].owner}
-          </a>
-        </div>
-        <div className="text-center text-gray-400 underline">
-          <a
-            href={currentGroup[translateIndex].refLicense}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t("License")}
-            {`: ${currentGroup[translateIndex].license}`}
-          </a>
+
+        <div className="mb-12">
+          <div className="text-center justify-between space-x-4 mb-4">
+            {" "}
+            <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
+            <div className="inline-block font-bold">
+              {currentGroup[translateIndex].languageOriginal}{" "}
+              <span className="font-normal capitalize">
+                {currentGroup[translateIndex].languageOriginal.toLowerCase() !==
+                currentGroup[translateIndex].languageEnglish.toLowerCase()
+                  ? "(" + currentGroup[translateIndex].languageEnglish + ")"
+                  : ""}
+              </span>
+            </div>
+            <NextButton onClick={goToNextVerse} classes={"w-3 h-3"} />
+          </div>
+          <div className="text-center text-gray-400">
+            <a
+              href={currentGroup[translateIndex].refNameTranslate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              {currentGroup[translateIndex].nameTranslate}
+            </a>{" "}
+            {t("By")}{" "}
+            <a
+              href={currentGroup[translateIndex].refOwner}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline"
+            >
+              {currentGroup[translateIndex].owner}
+            </a>
+          </div>
+          <div className="text-center text-gray-400 underline">
+            <a
+              href={currentGroup[translateIndex].refLicense}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t("License")}
+              {`: ${currentGroup[translateIndex].license}`}
+            </a>
+          </div>
         </div>
       </div>
     </div>
