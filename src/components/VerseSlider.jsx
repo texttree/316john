@@ -139,7 +139,7 @@ const VerseSlider = () => {
       }
     } else {
       circles.push(
-        <div id="dots" className="mt-[-40px]" key="dots">
+        <div id="dots" key="dots">
           <span></span>
           <span></span>
           <span></span>
@@ -155,20 +155,23 @@ const VerseSlider = () => {
 
   return (
     <div>
-      <div className="flex items-start justify-between space-x-4 mb-16">
-        <div className="hidden md:block">
+      <div className="md:flex items-start justify-between space-x-4 mb-4 hidden">
+        <div>
           <PrevButton onClick={handlePrevButtonClickCombined} />
         </div>
-        <div className="mx-4 max-w-lg items-center justify-center rounded-lg hidden md:block">
+        <div className="mx-4 max-w-lg items-center justify-center rounded-lg">
           <p className="text-3xl leading-tight text-center verse">
             {currentGroup[translateIndex].verse}
           </p>
         </div>
-        <div className="hidden md:block">
+        <div>
           <NextButton onClick={handleNextButtonClickCombined} />
         </div>
       </div>
-
+      <div className="flex justify-between space-x-4 md:hidden my-4">
+        <PrevButton onClick={handlePrevButtonClickCombined} />
+        <NextButton onClick={handleNextButtonClickCombined} />
+      </div>
       <div className="relative">
         <div className="w-full rounded-lg md:hidden mb-4">
           <p className="text-3xl leading-tight text-center verse">
@@ -176,7 +179,7 @@ const VerseSlider = () => {
           </p>
         </div>
 
-        <div className="flex justify-center items-center space-x-2 mt-2 mt-[-40px]">
+        <div className="flex justify-center items-center space-x-2 mt-2">
           {renderCircles()}
         </div>
 
@@ -184,10 +187,6 @@ const VerseSlider = () => {
           {`${translateIndex + 1}/${currentGroup.length}`}
         </div>
         <br />
-        <div className="flex justify-between space-x-4 md:hidden my-16">
-          <PrevButton onClick={handlePrevButtonClickCombined} />
-          <NextButton onClick={handleNextButtonClickCombined} />
-        </div>
       </div>
 
       <div className="mb-12">
