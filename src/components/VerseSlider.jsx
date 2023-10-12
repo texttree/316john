@@ -153,21 +153,9 @@ const VerseSlider = () => {
     return circles;
   };
 
-  // Обработчик свайпа влево
-  const handleSwipeLeft = () => {
-    handlePrevButtonClick();
-    goToPrevVerseInGroup();
-  };
-
-  // Обработчик свайпа вправо
-  const handleSwipeRight = () => {
-    handleNextButtonClick();
-    goToNextVerseInGroup();
-  };
-
   const handlers = useSwipeable({
-    onSwipedLeft: handleSwipeLeft,
-    onSwipedRight: handleSwipeRight,
+    onSwipedLeft: handlePrevButtonClickCombined,
+    onSwipedRight: handleNextButtonClickCombined,
   });
   return (
     <div>
