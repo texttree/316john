@@ -198,7 +198,7 @@ const VerseSlider = () => {
           <div className="text-center justify-between space-x-4 mb-4">
             {" "}
             <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
-            <div className="inline-block font-bold">
+            <div className="inline-block font-bold vertical-align-5px">
               {currentGroup[translateIndex].languageOriginal}{" "}
               <span className="font-normal capitalize">
                 {currentGroup[translateIndex].languageOriginal.toLowerCase() !==

@@ -263,3 +263,8 @@
     opacity: 0;
   }
 }
+
+
+.vertical-align-5px {
+  vertical-align: 5px;
+}
