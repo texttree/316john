@@ -5,7 +5,7 @@ import Feedback from "./Feedback";
 import Modal from "./Modal";
 import PrevButton from "./PrevButton";
 import Header from "./Header";
-import { languageGroups, countVerse } from "./verseUtils";
+import { languageGroups, countVerse } from "../helper";
 
 const youtubeIconSVG = (
   <svg

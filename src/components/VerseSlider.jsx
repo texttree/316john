@@ -5,7 +5,7 @@ import { createBrowserHistory } from "history";
 import { useSwipeable } from "react-swipeable";
 import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
-import { languageGroups } from "./verseUtils";
+import { languageGroups } from "../helper";
 import { languageIndexState, translateIndexState } from "../atoms";
 
 const VerseSlider = () => {
