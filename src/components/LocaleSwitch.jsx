@@ -39,7 +39,7 @@ function LocaleSwitch() {
           <ul className="z-50 overflow-hidden absolute dark:text-black mt-2 rounded shadow-md right-0">
             {langs.map((lang) => (
               <li
-                className="cursor-pointer select-none p-2 hover:bg-black hover:text-white bg-zinc-100 dark:bg-[#1D1F34] dark:hover:bg-zinc-700 dark:text-slate-100"
+                className="cursor-pointer select-none p-2 hover:bg-black hover:text-white bg-zinc-100 dark:bg-widget dark:hover:bg-zinc-700 dark:text-slate-100"
                 key={lang.code}
                 value={lang.code}
                 onClick={() => {

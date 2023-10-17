@@ -61,28 +61,28 @@ function Feedback() {
           <div className="flex flex-col dark:text-zinc-100 items-center gap-4 w-full text-base">
             <input
               placeholder={t("YourName")}
-              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-[#1D1F34] rounded-lg w-full outline-none"
+              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-widget rounded-lg w-full outline-none"
               onBlur={(e) => setName(e.target.value)}
             />
             <input
               placeholder={t("YourEmail")}
-              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-[#1D1F34] rounded-lg w-full outline-none"
+              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-widget rounded-lg w-full outline-none"
               onBlur={(e) => setEmail(e.target.value)}
             />
             <input
               placeholder={t("Country")}
-              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-[#1D1F34] rounded-lg w-full outline-none"
+              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-widget rounded-lg w-full outline-none"
               onBlur={(e) => setCountry(e.target.value)}
             />
             <textarea
               placeholder={t("Message")}
-              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-[#1D1F34] rounded-lg w-full outline-none"
+              className="p-3 border border-gray-400 dark:border-zinc-700 dark:bg-widget rounded-lg w-full outline-none"
               onBlur={(e) => setMessage(e.target.value)}
               rows="5"
             />
             <input
               type="submit"
-              className="p-3 mt-4 bg-zinc-100 dark:bg-[#1D1F34] hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-zinc-700 dark:active:bg-zinc-600 w-full font-bold rounded-lg cursor-pointer"
+              className="p-3 mt-4 bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-zinc-700 dark:active:bg-zinc-600 w-full font-bold rounded-lg cursor-pointer"
               value={t("Send")}
             />
             {error && <div>{t(error)}</div>}
@@ -91,7 +91,7 @@ function Feedback() {
             </div>
           </div>
         ) : (
-          <div className="p-10 w-full text-center bg-zinc-100 dark:bg-[#1D1F34] rounded-lg">
+          <div className="p-10 w-full text-center bg-zinc-100 dark:bg-widget rounded-lg">
             {t("YourMessageHasBeenSent")}
           </div>
         )}

@@ -4,7 +4,7 @@ import DarkModeToggle from "./DarkModeToggle";
 function Header() {
   return (
     <div className="flex flex-row py-6 justify-center items-center relative">
-      <div className=" text-[#323653] dark:text-white">
+      <div className=" text-primary dark:text-white">
         <svg
           width="78"
           height="44"

@@ -37,7 +37,7 @@ function LanguageSelect() {
         }}
       >
         <div className="relative">
-          <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-[#1D1F34] p-2 rounded-full flex w-full  text-left">
+          <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-widget p-2 rounded-full flex w-full  text-left">
             <Combobox.Input
               className="w-full border-none py-2 pl-3 bg-transparent pr-10 text-sm focus:outline-none"
               displayValue={(lang) => lang.orig}
@@ -62,7 +62,7 @@ function LanguageSelect() {
             </Combobox.Button>
           </div>
 
-          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-[#1D1F34] text-base focus:outline-none shadow-md">
+          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-widget text-base focus:outline-none shadow-md">
             {filterLangList(query).map((lang) => (
               <Combobox.Option
                 key={lang.index}

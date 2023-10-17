@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const NextButton = ({ onClick, className }) => (
   <button
-    className={`bg-zinc-100 dark:bg-[#1D1F34] rounded-full p-3  ${className}`}
+    className={`bg-zinc-100 dark:bg-widget rounded-full p-3 ${className}`}
     onClick={onClick}
   >
     <svg
