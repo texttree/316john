@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
 import { createBrowserHistory } from "history";
@@ -21,7 +21,7 @@ const VerseSlider = () => {
   const currentLanguage = Object.keys(languageGroups)[languageIndex];
   const currentGroup = languageGroups[currentLanguage];
 
-  const loadVerseFromUrl = () => {
+  useEffect(() => {
     const currentUrl = window.location.pathname;
     const urlParts = currentUrl.split("/");
     if (urlParts.length >= 3) {
@@ -36,10 +36,6 @@ const VerseSlider = () => {
         setTranslateIndex(foundVerseIndex);
       }
     }
-  };
-
-  useEffect(() => {
-    loadVerseFromUrl();
   }, []);
 
   const handleNextButtonClick = () => {
@@ -51,7 +47,7 @@ const VerseSlider = () => {
       dots.classList.add("rw");
       const newTimer = setTimeout(() => {
         dots.classList.remove("rw");
-      }, 200);
+      }, 300);
       setTimer(newTimer);
     }
   };
@@ -62,10 +58,10 @@ const VerseSlider = () => {
       if (timer) {
         clearTimeout(timer);
       }
-      dots.classList.add("rw");
+      dots.classList.add("lw");
       const newTimer = setTimeout(() => {
-        dots.classList.remove("rw");
-      }, 200);
+        dots.classList.remove("lw");
+      }, 300);
       setTimer(newTimer);
     }
   };
@@ -123,7 +119,7 @@ const VerseSlider = () => {
     changeLanguageGroup(prevIndex);
   };
 
-  const renderCircles = () => {
+  const renderCircles = useMemo(() => {
     const circles = [];
     if (currentGroup.length < 4) {
       for (let i = 0; i < currentGroup.length; i++) {
@@ -132,7 +128,7 @@ const VerseSlider = () => {
           <div
             key={i}
             className={`h-3 w-3 rounded-full ${
-              isActive ? "bg-[#333]" : "bg-[#aaa]"
+              isActive ? "bg-gray-700" : "bg-gray-300"
             }`}
           ></div>
         );
@@ -151,7 +147,7 @@ const VerseSlider = () => {
       );
     }
     return circles;
-  };
+  }, [currentGroup, translateIndex]);
 
   const handlers = useSwipeable({
     onSwipedLeft: handlePrevButtonClickCombined,
@@ -185,7 +181,7 @@ const VerseSlider = () => {
           </div>
 
           <div className="flex justify-center items-center space-x-2 mt-2">
-            {renderCircles()}
+            {renderCircles}
           </div>
 
           <div className="text-center text-gray-500 text-sm mt-2">
