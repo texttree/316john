@@ -38,7 +38,7 @@ function Header() {
           />
         </svg>
       </div>
-      <div className="flex absolute right-0 ">
+      <div className="flex absolute right-0">
         <DarkModeToggle />
         <LocaleSwitch />
       </div>
