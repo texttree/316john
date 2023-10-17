@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import VerseSlider from "./components/VerseSlider";
 import About from "./components/About";
 
+localStorage.setItem("darkMode", false);
+
 function App() {
   return (
     <div className="mx-auto max-w-4xl px-7">
