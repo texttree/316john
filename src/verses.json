@@ -12,7 +12,7 @@
     "nameTranslateAlternative": "",
     "shortNameTranslate": "FBV",
     "refNameTranslate": "https://open.bible/bibles/english-freebible-text-bible/",
-    "openSourse": "Yes"
+    "openSource": "Yes"
   },
   {
     "nameTranslate": "English Majority Text Version",
@@ -27,7 +27,7 @@
     "nameTranslateAlternative": "",
     "shortNameTranslate": "EMTV",
     "refNameTranslate": "https://open.bible/bibles/english-ebible-text-nt/",
-    "openSourse": "Yes"
+    "openSource": "Yes"
   },
   {
     "nameTranslate": "Literal Standard Version",
@@ -42,7 +42,7 @@
     "nameTranslateAlternative": "",
     "shortNameTranslate": "LSV",
     "refNameTranslate": "https://open.bible/bibles/english-covenant-text-bible/",
-    "openSourse": "Yes"
+    "openSource": "Yes"
   },
   {
     "nameTranslate": "The Text-Critical English New Testament",
@@ -57,7 +57,7 @@
     "nameTranslateAlternative": "",
     "shortNameTranslate": "TCENT",
     "refNameTranslate": "https://open.bible/bibles/english-ebible-text-critical-nt/",
-    "openSourse": "Yes"
+    "openSource": "Yes"
   },
   {
     "nameTranslate": "Berean Standard Bible",
@@ -72,6 +72,6 @@
     "nameTranslateAlternative": "",
     "shortNameTranslate": "BSB",
     "refNameTranslate": "https://open.bible/bibles/english-bsbpublishing-text-bible/",
-    "openSourse": "Yes"
+    "openSource": "Yes"
   }
 ]
