@@ -55,7 +55,7 @@ function About() {
                     count: Object.keys(languageGroups).length,
                   })} 7000`}
                 </p>
-                <p className="text-sm mt-[-20px]">
+                <p className="text-sm">
                   {`${t("CountVerse", {
                     count: countVerse,
                   })}`}
