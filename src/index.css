@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --dot-translate-x: 24px;
+}
+
 @layer base {
   html {
     font-family: "Inter", system-ui, sans-serif;
@@ -28,7 +32,7 @@
   width: 0px;
   height: 0px;
   display: inline-block;
-  animation-duration: 0.3s;
+  animation-duration: 1s;
   animation-fill-mode: forwards;
 }
 
@@ -50,6 +54,12 @@
 #dots span:nth-child(6) {
   opacity: 0.7;
   transform: scale(0.6);
+}
+
+#dots span:nth-child(3),
+#dots span:nth-child(5) {
+  opacity: 0.7;
+  transform: scale(1);
 }
 
 #dots.rw span:nth-child(1) {
@@ -74,6 +84,13 @@
   animation-name: dotrw7;
 }
 
+.dark #dots.rw span:nth-child(3) {
+  animation-name: dotrw3_dark;
+}
+.dark #dots.rw span:nth-child(4) {
+  animation-name: dotrw4_dark;
+}
+
 @keyframes dotrw1 {
   from {
     transform: translateX(0px) scale(0);
@@ -81,32 +98,34 @@
   }
 
   to {
-    transform: translateX(22px) scale(0.6);
+    transform: translateX(var(--dot-translate-x)) scale(0.6);
     opacity: 0.7;
   }
 }
 
 @keyframes dotrw2 {
   from {
-    transform: translateX(0px) scale(0);
-    opacity: 0;
+    transform: translateX(0px) scale(0.6);
+    opacity: 0.7;
   }
 
   to {
-    transform: translateX(22px) scale(0.6);
+    transform: translateX(var(--dot-translate-x)) scale(1);
     opacity: 0.7;
   }
 }
 
 @keyframes dotrw3 {
   from {
-    transform: translateX(0px) scale(0.6);
+    transform: translateX(0px) scale(1);
     opacity: 0.7;
+    border-color: #aaa;
   }
 
   to {
-    transform: translateX(22px) scale(1);
+    transform: translateX(var(--dot-translate-x)) scale(1);
     opacity: 1;
+    border-color: #000000;
   }
 }
 
@@ -114,22 +133,52 @@
   from {
     transform: translateX(0px) scale(1);
     opacity: 1;
+    border-color: #000000;
   }
 
   to {
-    transform: translateX(22px) scale(1);
+    transform: translateX(var(--dot-translate-x)) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
+  }
+}
+
+@keyframes dotrw3_dark {
+  from {
+    transform: translateX(0px) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
+  }
+
+  to {
+    transform: translateX(var(--dot-translate-x)) scale(1);
     opacity: 1;
+    border-color: #ffffff;
+  }
+}
+
+@keyframes dotrw4_dark {
+  from {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+    border-color: #ffffff;
+  }
+
+  to {
+    transform: translateX(var(--dot-translate-x)) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
   }
 }
 
 @keyframes dotrw5 {
   from {
     transform: translateX(0px) scale(1);
-    opacity: 1;
+    opacity: 0.7;
   }
 
   to {
-    transform: translateX(22px) scale(0.6);
+    transform: translateX(var(--dot-translate-x)) scale(0.6);
     opacity: 0.7;
   }
 }
@@ -141,19 +190,19 @@
   }
 
   to {
-    transform: translateX(22px) scale(0);
+    transform: translateX(var(--dot-translate-x)) scale(0);
     opacity: 0;
   }
 }
 
 @keyframes dotrw7 {
   from {
-    transform: translateX(0px) scale(0.6);
-    opacity: 0.7;
+    transform: translateX(0px) scale(0);
+    opacity: 0;
   }
 
   to {
-    transform: translateX(22px) scale(0);
+    transform: translateX(var(--dot-translate-x)) scale(0);
     opacity: 0;
   }
 }
@@ -180,9 +229,16 @@
   animation-name: dotlw7;
 }
 
+.dark #dots.lw span:nth-child(3) {
+  animation-name: dotlw3_dark;
+}
+.dark #dots.lw span:nth-child(4) {
+  animation-name: dotlw4_dark;
+}
+
 @keyframes dotlw7 {
   from {
-    transform: translateX(22px) scale(0);
+    transform: translateX(var(--dot-translate-x)) scale(0);
     opacity: 0;
   }
 
@@ -194,76 +250,76 @@
 
 @keyframes dotlw6 {
   from {
-    transform: translateX(22px) scale(0);
-    opacity: 0;
+    transform: translateX(var(--dot-translate-x)) scale(0.6);
+    opacity: 0.7;
   }
 
   to {
-    transform: translateX(0px) scale(0.6);
+    transform: translateX(0px) scale(1);
     opacity: 0.7;
   }
 }
 
 @keyframes dotlw5 {
   from {
-    transform: translateX(22px) scale(0.6);
+    transform: translateX(0px) scale(1);
     opacity: 0.7;
+    border-color: #aaa;
   }
 
   to {
-    transform: translateX(0px) scale(1);
+    transform: translateX(var(--dot-translate-x)) scale(1);
     opacity: 1;
+    border-color: #000000;
   }
 }
 
 @keyframes dotlw4 {
   from {
-    transform: translateX(22px) scale(1);
+    transform: translateX(0px) scale(1);
     opacity: 1;
+    border-color: #000000;
   }
 
   to {
-    transform: translateX(0px) scale(1);
-    opacity: 1;
+    transform: translateX(var(--dot-translate-x)) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
   }
 }
 
 @keyframes dotlw3 {
   from {
-    transform: translateX(22px) scale(1);
-    opacity: 1;
+    transform: translateX(0px) scale(1);
+    opacity: 0.7;
   }
 
   to {
-    transform: translateX(0px) scale(0.6);
+    transform: translateX(var(--dot-translate-x)) scale(0.6);
     opacity: 0.7;
   }
 }
 
 @keyframes dotlw2 {
   from {
-    transform: translateX(22px) scale(0.6);
+    transform: translateX(0px) scale(0.6);
     opacity: 0.7;
   }
 
   to {
-    transform: translateX(0px) scale(0);
+    transform: translateX(var(--dot-translate-x)) scale(0);
     opacity: 0;
   }
 }
 
 @keyframes dotlw1 {
   from {
-    transform: translateX(22px) scale(0.6);
-    opacity: 0.7;
-  }
-
-  to {
     transform: translateX(0px) scale(0);
     opacity: 0;
   }
-}
 
-.vertical-align-5px {
-  vertical-align: 5px;
+  to {
+    transform: translateX(var(--dot-translate-x)) scale(0);
+    opacity: 0;
+  }
 }
