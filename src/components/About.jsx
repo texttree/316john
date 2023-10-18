@@ -36,7 +36,7 @@ function About() {
       <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
         <div className="mx-auto max-w-4xl px-7 pb-10 h-full space-y-20">
           <div className="relative">
-            <div className="absolute translate-y-1/2 z-10">
+            <div className="absolute py-6 z-10">
               <PrevButton
                 onClick={() => setIsOpen(false)}
                 className="w-10 h-10"

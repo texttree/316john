@@ -10,7 +10,7 @@ function LocaleSwitch() {
     <>
       <div className="relative">
         <button
-          className="flex w-16 items-center justify-between rounded bg-transparent p-2"
+          className="flex items-center ml-3 rounded bg-transparent"
           onClick={() => setOpen((prev) => !prev)}
         >
           <svg
