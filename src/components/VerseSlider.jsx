@@ -46,7 +46,7 @@ const VerseSlider = () => {
       dots.classList.add("rw");
       const newTimer = setTimeout(() => {
         dots.classList.remove("rw");
-      }, 1000);
+      }, 400);
       setTimer(newTimer);
     }
   };
@@ -60,7 +60,7 @@ const VerseSlider = () => {
       dots.classList.add("lw");
       const newTimer = setTimeout(() => {
         dots.classList.remove("lw");
-      }, 1000);
+      }, 400);
       setTimer(newTimer);
     }
   };
