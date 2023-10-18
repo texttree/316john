@@ -5,7 +5,7 @@ import Feedback from "./Feedback";
 import Modal from "./Modal";
 import PrevButton from "./PrevButton";
 import Header from "./Header";
-import { languageGroups, countVerse } from "../helper";
+import { getLanguageGroups, countVerse } from "../helper";
 
 const youtubeIconSVG = (
   <svg
@@ -23,6 +23,8 @@ const youtubeIconSVG = (
 function About() {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const languageGroups = getLanguageGroups();
+
   return (
     <div>
       <div className="flex justify-center mt-24 mb-16">

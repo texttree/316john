@@ -5,12 +5,13 @@ import { createBrowserHistory } from "history";
 import { useSwipeable } from "react-swipeable";
 import NextButton from "./NextButton";
 import PrevButton from "./PrevButton";
-import { languageGroups } from "../helper";
+import { getLanguageGroups } from "../helper";
 import { languageIndexState, translateIndexState } from "../atoms";
 
 const VerseSlider = () => {
   let history = createBrowserHistory();
   const { t } = useTranslation();
+  const languageGroups = getLanguageGroups();
 
   const [translateIndex, setTranslateIndex] =
     useRecoilState(translateIndexState);

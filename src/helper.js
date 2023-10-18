@@ -1,6 +1,6 @@
 import versesData from "./verses.json";
 
-const getLanguageGroups = () => {
+export const getLanguageGroups = () => {
   const groups = {};
   versesData.forEach((verse) => {
     if (!groups[verse.languageEnglish]) {
@@ -11,7 +11,7 @@ const getLanguageGroups = () => {
   return groups;
 };
 
-export const languageGroups = getLanguageGroups();
+const languageGroups = getLanguageGroups();
 export const countVerse = versesData.length;
 
 export const langList = Object.keys(languageGroups).map(
