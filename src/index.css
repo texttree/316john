@@ -5,7 +5,8 @@
 @tailwind utilities;
 
 :root {
-  --dot-translate-x: 24px;
+  --dot-translate-rx: 24px;
+  --dot-translate-lx: -24px;
 }
 
 @layer base {
@@ -98,7 +99,7 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(0.6);
+    transform: translateX(var(--dot-translate-rx)) scale(0.6);
     opacity: 0.7;
   }
 }
@@ -110,7 +111,7 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(1);
+    transform: translateX(var(--dot-translate-rx)) scale(1);
     opacity: 0.7;
   }
 }
@@ -123,7 +124,7 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(1);
+    transform: translateX(var(--dot-translate-rx)) scale(1);
     opacity: 1;
     border-color: #000000;
   }
@@ -137,7 +138,7 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(1);
+    transform: translateX(var(--dot-translate-rx)) scale(1);
     opacity: 0.7;
     border-color: #aaa;
   }
@@ -151,23 +152,9 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(1);
+    transform: translateX(var(--dot-translate-rx)) scale(1);
     opacity: 1;
     border-color: #ffffff;
-  }
-}
-
-@keyframes dotrw4_dark {
-  from {
-    transform: translateX(0px) scale(1);
-    opacity: 1;
-    border-color: #ffffff;
-  }
-
-  to {
-    transform: translateX(var(--dot-translate-x)) scale(1);
-    opacity: 0.7;
-    border-color: #aaa;
   }
 }
 
@@ -178,7 +165,7 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(0.6);
+    transform: translateX(var(--dot-translate-rx)) scale(0.6);
     opacity: 0.7;
   }
 }
@@ -190,7 +177,7 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(0);
+    transform: translateX(var(--dot-translate-rx)) scale(0);
     opacity: 0;
   }
 }
@@ -202,8 +189,22 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(0);
+    transform: translateX(var(--dot-translate-rx)) scale(0);
     opacity: 0;
+  }
+}
+
+@keyframes dotrw4_dark {
+  from {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+    border-color: #ffffff;
+  }
+
+  to {
+    transform: translateX(var(--dot-translate-rx)) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
   }
 }
 
@@ -229,34 +230,60 @@
   animation-name: dotlw7;
 }
 
-.dark #dots.lw span:nth-child(3) {
-  animation-name: dotlw3_dark;
-}
 .dark #dots.lw span:nth-child(4) {
   animation-name: dotlw4_dark;
 }
+.dark #dots.lw span:nth-child(5) {
+  animation-name: dotlw5_dark;
+}
 
-@keyframes dotlw7 {
+@keyframes dotlw1 {
   from {
-    transform: translateX(var(--dot-translate-x)) scale(0);
+    transform: translateX(0px) scale(0);
     opacity: 0;
   }
 
   to {
-    transform: translateX(0px) scale(0.6);
-    opacity: 0.7;
+    transform: translateX(var(--dot-translate-lx)) scale(0);
+    opacity: 0;
   }
 }
 
-@keyframes dotlw6 {
+@keyframes dotlw2 {
   from {
-    transform: translateX(var(--dot-translate-x)) scale(0.6);
+    transform: translateX(0px) scale(0.6);
     opacity: 0.7;
   }
 
   to {
+    transform: translateX(var(--dot-translate-lx)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes dotlw3 {
+  from {
     transform: translateX(0px) scale(1);
     opacity: 0.7;
+  }
+
+  to {
+    transform: translateX(var(--dot-translate-lx)) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotlw4 {
+  rom {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+    border-color: #000000;
+  }
+
+  to {
+    transform: translateX(var(--dot-translate-lx)) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
   }
 }
 
@@ -268,58 +295,60 @@
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(1);
+    transform: translateX(var(--dot-translate-lx)) scale(1);
     opacity: 1;
     border-color: #000000;
   }
 }
 
-@keyframes dotlw4 {
-  from {
-    transform: translateX(0px) scale(1);
-    opacity: 1;
-    border-color: #000000;
-  }
-
-  to {
-    transform: translateX(var(--dot-translate-x)) scale(1);
-    opacity: 0.7;
-    border-color: #aaa;
-  }
-}
-
-@keyframes dotlw3 {
-  from {
-    transform: translateX(0px) scale(1);
-    opacity: 0.7;
-  }
-
-  to {
-    transform: translateX(var(--dot-translate-x)) scale(0.6);
-    opacity: 0.7;
-  }
-}
-
-@keyframes dotlw2 {
+@keyframes dotlw6 {
   from {
     transform: translateX(0px) scale(0.6);
     opacity: 0.7;
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(0);
-    opacity: 0;
+    transform: translateX(var(--dot-translate-lx)) scale(1);
+    opacity: 0.7;
   }
 }
 
-@keyframes dotlw1 {
+@keyframes dotlw7 {
   from {
     transform: translateX(0px) scale(0);
     opacity: 0;
   }
 
   to {
-    transform: translateX(var(--dot-translate-x)) scale(0);
-    opacity: 0;
+    transform: translateX(var(--dot-translate-lx)) scale(0.6);
+    opacity: 0.7;
+  }
+}
+
+@keyframes dotlw5_dark {
+  from {
+    transform: translateX(0px) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
+  }
+
+  to {
+    transform: translateX(var(--dot-translate-lx)) scale(1);
+    opacity: 1;
+    border-color: #ffffff;
+  }
+}
+
+@keyframes dotlw4_dark {
+  from {
+    transform: translateX(0px) scale(1);
+    opacity: 1;
+    border-color: #ffffff;
+  }
+
+  to {
+    transform: translateX(var(--dot-translate-lx)) scale(1);
+    opacity: 0.7;
+    border-color: #aaa;
   }
 }
