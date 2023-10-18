@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-        primary: "#323653 ",
+        primary: "#323653",
         widget: "#1D1F34",
       },
     },
