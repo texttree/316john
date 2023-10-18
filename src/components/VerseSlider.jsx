@@ -47,7 +47,7 @@ const VerseSlider = () => {
       dots.classList.add("rw");
       const newTimer = setTimeout(() => {
         dots.classList.remove("rw");
-      }, 300);
+      }, 1000);
       setTimer(newTimer);
     }
   };
@@ -61,7 +61,7 @@ const VerseSlider = () => {
       dots.classList.add("lw");
       const newTimer = setTimeout(() => {
         dots.classList.remove("lw");
-      }, 300);
+      }, 1000);
       setTimer(newTimer);
     }
   };
@@ -191,10 +191,10 @@ const VerseSlider = () => {
         </div>
 
         <div className="mb-12">
-          <div className="text-center justify-between space-x-4 mb-4">
+          <div className="text-center items-center flex justify-center space-x-4 mb-4">
             {" "}
             <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
-            <div className="inline-block font-bold vertical-align-5px">
+            <div className="inline-block font-bold">
               {currentGroup[translateIndex].languageOriginal}{" "}
               <span className="font-normal capitalize">
                 {currentGroup[translateIndex].languageOriginal.toLowerCase() !==
