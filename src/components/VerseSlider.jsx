@@ -31,8 +31,7 @@ const VerseSlider = () => {
         (verse) =>
           verse.shortNameTranslate.toLowerCase() === verseId.toLowerCase()
       );
-
-      if (foundVerseIndex !== -1) {
+      if (foundVerseIndex) {
         setTranslateIndex(foundVerseIndex);
       }
     }
