@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { darkModeState } from "../atoms"; // Подключите ваш атом
 const sun = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -35,11 +36,11 @@ const moon = (
 );
 
 function DarkModeToggle() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
+  const [isDarkMode, setIsDarkMode] = useRecoilState(darkModeState); // Здесь используем Recoil
   const toggleDarkMode = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
+    localStorage.setItem("darkMode", newMode); // Сохраняем состояние в localStorage
 
     if (newMode) {
       document.documentElement.classList.add("dark");
@@ -50,11 +51,14 @@ function DarkModeToggle() {
 
   useEffect(() => {
     const savedDarkMode = localStorage.getItem("darkMode");
-    if (savedDarkMode) {
-      setIsDarkMode(savedDarkMode === "true");
-      localStorage.setItem("darkMode", savedDarkMode === "true");
+    if (savedDarkMode === "true") {
+      setIsDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove("dark");
     }
-  }, []);
+  }, [setIsDarkMode]);
 
   return (
     <button
