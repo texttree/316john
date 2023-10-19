@@ -63,7 +63,7 @@ function About() {
                   })}`}
                 </p>
               </div>
-              <div className="flex items-center justify-center">
+              <div className="flex justify-center">
                 <a
                   href="https://www.youtube.com/@316John"
                   target="_blank"
@@ -73,9 +73,9 @@ function About() {
                   {youtubeIconSVG}
                 </a>
               </div>
-              <div className="flex flex-col gap-5 justify-center items-center text-center">
+              <div className="flex flex-col gap-5 text-center">
                 <div className="text-xl font-bold">{t("OurGoal")}</div>
-                <p className="text-base">{t("OurGoalText")}</p>
+                <p>{t("OurGoalText")}</p>
               </div>
             </div>
             <Feedback />

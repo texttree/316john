@@ -157,17 +157,13 @@ const VerseSlider = () => {
     <div>
       <div {...handlers}>
         <div className="md:flex items-start justify-between space-x-4 mb-4 hidden">
-          <div>
-            <PrevButton onClick={handlePrevButtonClickCombined} />
-          </div>
+          <PrevButton onClick={handlePrevButtonClickCombined} />
           <div className="mx-4 max-w-lg items-center justify-center rounded-lg">
-            <p className="text-3xl leading-tight text-center verse">
+            <p className="text-3xl leading-tight text-center">
               {currentGroup[translateIndex].verse}
             </p>
           </div>
-          <div>
-            <NextButton onClick={handleNextButtonClickCombined} />
-          </div>
+          <NextButton onClick={handleNextButtonClickCombined} />
         </div>
         <div className="flex justify-between space-x-4 md:hidden my-4">
           <PrevButton onClick={handlePrevButtonClickCombined} />
@@ -175,12 +171,12 @@ const VerseSlider = () => {
         </div>
         <div className="relative">
           <div className="w-full rounded-lg md:hidden mb-4">
-            <p className="text-3xl leading-tight text-center verse">
+            <p className="text-3xl leading-tight text-center">
               {currentGroup[translateIndex].verse}
             </p>
           </div>
 
-          <div className="flex justify-center items-center space-x-2 mt-2">
+          <div className="flex justify-center items-center">
             {renderCircles}
           </div>
 
