@@ -183,14 +183,11 @@ const VerseSlider = () => {
           <div className="text-center text-gray-500 text-sm mt-2">
             {`${translateIndex + 1}/${currentGroup.length}`}
           </div>
-          <br />
         </div>
-
-        <div className="mb-12">
-          <div className="text-center items-center flex justify-center space-x-4 mb-4">
-            {" "}
+        <div className="mb-12 mt-2">
+          <div className="items-center flex justify-center space-x-4 mb-4">
             <PrevButton onClick={goToPrevVerse} classes={"w-3 h-3"} />
-            <div className="inline-block font-bold">
+            <div className="font-bold">
               {currentGroup[translateIndex].languageOriginal}{" "}
               <span className="font-normal capitalize">
                 {currentGroup[translateIndex].languageOriginal.toLowerCase() !==

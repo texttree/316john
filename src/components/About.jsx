@@ -28,10 +28,7 @@ function About() {
   return (
     <div>
       <div className="flex justify-center mt-24 mb-16">
-        <button
-          className="font-bold underline text-base"
-          onClick={() => setIsOpen(true)}
-        >
+        <button className="font-bold underline" onClick={() => setIsOpen(true)}>
           {t("AboutProject")}
         </button>
       </div>
@@ -49,9 +46,9 @@ function About() {
 
           <div className="space-y-10">
             <div className="space-y-5 mx-auto max-w-md">
-              <div className="flex flex-col gap-5 justify-center items-center text-center">
+              <div className="flex flex-col gap-5 text-center">
                 <div className="text-xl font-bold">{t("AboutProject")}</div>
-                <p className="text-base">{t("AboutProjectText")}</p>
+                <p>{t("AboutProjectText")}</p>
                 <p className="text-sm">
                   {`${t("TranslatedLanguage", {
                     count: Object.keys(languageGroups).length,

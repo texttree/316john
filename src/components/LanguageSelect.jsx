@@ -62,7 +62,7 @@ function LanguageSelect() {
             </Combobox.Button>
           </div>
 
-          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-widget text-base focus:outline-none shadow-md">
+          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-widget focus:outline-none shadow-md">
             {filterLangList(query).map((lang) => (
               <Combobox.Option
                 key={lang.index}
