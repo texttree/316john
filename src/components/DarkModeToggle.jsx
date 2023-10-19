@@ -40,13 +40,8 @@ function DarkModeToggle() {
   const toggleDarkMode = () => {
     const newMode = !isDarkMode;
     setIsDarkMode(newMode);
+    document.documentElement.classList.toggle("dark", newMode);
     localStorage.setItem("darkMode", newMode);
-
-    if (newMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
   };
 
   useEffect(() => {
