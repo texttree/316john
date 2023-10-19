@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { langs } from "../constants";
+import Locale from "../locale.svg?react";
 
 function LocaleSwitch() {
   const { i18n } = useTranslation();
@@ -12,20 +13,7 @@ function LocaleSwitch() {
         className="flex items-center ml-3 rounded bg-transparent"
         onClick={() => setOpen((prev) => !prev)}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-          />
-        </svg>
+        <Locale />
         <span>
           {
             langs.filter(

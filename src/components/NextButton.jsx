@@ -1,24 +1,12 @@
 import PropTypes from "prop-types";
+import Next from "../next.svg?react";
 
 const NextButton = ({ onClick, className }) => (
   <button
     className={`bg-zinc-100 dark:bg-widget rounded-full p-3 ${className}`}
     onClick={onClick}
   >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className="w-full h-full"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M8.25 19.5L15.75 12l-7.5-7.5"
-      />
-    </svg>
+    <Next />
   </button>
 );
 
