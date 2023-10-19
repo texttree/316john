@@ -192,7 +192,7 @@ const VerseSlider = () => {
               <span className="font-normal capitalize">
                 {currentGroup[translateIndex].languageOriginal.toLowerCase() !==
                 currentGroup[translateIndex].languageEnglish.toLowerCase()
-                  ? "(" + currentGroup[translateIndex].languageEnglish + ")"
+                  ? `(${currentGroup[translateIndex].languageEnglish})`
                   : ""}
               </span>
             </div>
