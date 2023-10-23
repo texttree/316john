@@ -26,7 +26,7 @@ function About() {
             <div className="absolute py-6 z-10">
               <PrevButton
                 onClick={() => setIsOpen(false)}
-                className="w-10 h-10"
+                className="w-10 h-10 bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-zinc-700 dark:active:bg-zinc-600"
               />
             </div>
             <Header />

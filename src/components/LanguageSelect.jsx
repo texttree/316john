@@ -37,7 +37,7 @@ function LanguageSelect() {
         }}
       >
         <div className="relative">
-          <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-widget p-2 rounded-full flex w-full text-left">
+          <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-zinc-700 dark:active:bg-zinc-600  p-2 rounded-full flex w-full text-left">
             <Combobox.Input
               className="w-full border-none py-2 pl-3 bg-transparent pr-10 text-sm focus:outline-none"
               displayValue={(lang) => lang.orig}
