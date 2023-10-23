@@ -10,12 +10,14 @@ function Feedback() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isSended, setIsSended] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const validation = () => {
     let error = null;
     if (!name || !country || !email || !message) {
       error = "NotAllFieldFull";
     }
+    setIsFormValid(!error);
     return { error };
   };
 
@@ -83,6 +85,7 @@ function Feedback() {
             type="submit"
             className="p-3 mt-4 bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-zinc-700 dark:active:bg-zinc-600 w-full font-bold rounded-lg cursor-pointer"
             value={t("Send")}
+            disabled={!isFormValid}
           />
           {error && <div>{t(error)}</div>}
           <div className="text-center text-gray-400">
