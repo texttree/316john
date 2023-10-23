@@ -1,6 +1,6 @@
-import LocaleSwitch from "./LocaleSwitch";
-import DarkModeToggle from "./DarkModeToggle";
-import Logo from "../logo.svg?react";
+import LocaleSwitch from './LocaleSwitch'
+import DarkModeToggle from './DarkModeToggle'
+import Logo from '../logo.svg?react'
 
 function Header() {
   return (
@@ -13,7 +13,7 @@ function Header() {
         <LocaleSwitch />
       </div>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

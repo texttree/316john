@@ -1,6 +1,6 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import PropTypes from "prop-types";
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
+import PropTypes from 'prop-types'
 
 export default function Modal({ isOpen, close, children }) {
   return (
@@ -35,17 +35,17 @@ export default function Modal({ isOpen, close, children }) {
         </div>
       </Dialog>
     </Transition>
-  );
+  )
 }
 
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   close: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
-};
+}
 
 Modal.defaultProps = {
   isOpen: false,
   close: () => {},
   children: Fragment,
-};
+}

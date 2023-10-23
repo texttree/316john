@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
-import { langs } from "../constants";
-import Locale from "../locale.svg?react";
+import { langs } from '../constants'
+import Locale from '../locale.svg?react'
 
 function LocaleSwitch() {
-  const { i18n } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const { i18n } = useTranslation()
+  const [open, setOpen] = useState(false)
   return (
     <div className="relative">
       <button
@@ -15,11 +15,7 @@ function LocaleSwitch() {
       >
         <Locale />
         <span>
-          {
-            langs.filter(
-              (lang) => lang.code === i18n.language.split("-")[0]
-            )?.[0]?.short
-          }
+          {langs.filter((lang) => lang.code === i18n.language.split('-')[0])?.[0]?.short}
         </span>
       </button>
       {open && (
@@ -30,8 +26,8 @@ function LocaleSwitch() {
               key={lang.code}
               value={lang.code}
               onClick={() => {
-                i18n.changeLanguage(lang.code);
-                setOpen(false);
+                i18n.changeLanguage(lang.code)
+                setOpen(false)
               }}
             >
               {lang.name}
@@ -40,7 +36,7 @@ function LocaleSwitch() {
         </ul>
       )}
     </div>
-  );
+  )
 }
 
-export default LocaleSwitch;
+export default LocaleSwitch
