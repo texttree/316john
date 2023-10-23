@@ -30,7 +30,7 @@ function DarkModeToggle() {
       onClick={toggleDarkMode}
       aria-label="Toggle Dark Mode"
     >
-      {isDarkMode ? <Sun /> : <Moon />}
+      {isDarkMode ? <Sun class="w-6 h-6" /> : <Moon class="w-6 h-6" />}
     </button>
   );
 }
