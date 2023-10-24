@@ -18,7 +18,7 @@ NextButton.propTypes = {
 NextButton.defaultProps = {
   onClick: () => {},
   className:
-    'w-12 h-12 bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-zinc-700 dark:active:bg-zinc-600',
+    'w-12 h-12 hover:bg-zinc-200 active:bg-zinc-300 dark:hover:bg-zinc-700 dark:active:bg-zinc-600',
 }
 
 export default NextButton
