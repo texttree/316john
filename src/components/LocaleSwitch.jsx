@@ -13,7 +13,7 @@ function LocaleSwitch() {
         className="flex items-center ml-3 rounded bg-transparent"
         onClick={() => setOpen((prev) => !prev)}
       >
-        <Locale />
+        <Locale className="w-6 h-6" />
         <span>
           {langs.filter((lang) => lang.code === i18n.language.split('-')[0])?.[0]?.short}
         </span>

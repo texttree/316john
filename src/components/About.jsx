@@ -55,7 +55,7 @@ function About() {
                   rel="noopener noreferrer"
                   className="transition duration-300 ease-in-out hover:text-red-500"
                 >
-                  <Youtube />
+                  <Youtube className="w-6 h-6"/>
                 </a>
               </div>
               <div className="flex flex-col gap-5 text-center">

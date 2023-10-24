@@ -6,7 +6,7 @@ const PrevButton = ({ onClick, className }) => (
     className={`bg-zinc-100 dark:bg-widget rounded-full p-3 ${className}`}
     onClick={onClick}
   >
-    <Prev />
+    <Prev className="w-full h-full" />
   </button>
 )
 
