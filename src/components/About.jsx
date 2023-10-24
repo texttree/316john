@@ -5,13 +5,12 @@ import Feedback from './Feedback'
 import Modal from './Modal'
 import PrevButton from './PrevButton'
 import Header from './Header'
-import { getLanguageGroups, countVerse } from '../helper'
+import { languageGroups, countVerse } from '../helper'
 import Youtube from '../youtube.svg?react'
 
 function About() {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
-  const languageGroups = getLanguageGroups()
 
   return (
     <div>
@@ -55,7 +54,7 @@ function About() {
                   rel="noopener noreferrer"
                   className="transition duration-300 ease-in-out hover:text-red-500"
                 >
-                  <Youtube className="w-6 h-6"/>
+                  <Youtube className="w-6 h-6" />
                 </a>
               </div>
               <div className="flex flex-col gap-5 text-center">

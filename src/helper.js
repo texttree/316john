@@ -1,18 +1,14 @@
-import versesData from './verses.json'
+import versesData from './verses.json';
 
-export const getLanguageGroups = () => {
-  const groups = {}
-  versesData.forEach((verse) => {
-    if (!groups[verse.languageEnglish]) {
-      groups[verse.languageEnglish] = []
-    }
-    groups[verse.languageEnglish].push(verse)
-  })
-  return groups
-}
+export const languageGroups = versesData.reduce((groups, verse) => {
+  if (!groups[verse.languageEnglish]) {
+    groups[verse.languageEnglish] = [];
+  }
+  groups[verse.languageEnglish].push(verse);
+  return groups;
+}, {})
 
-const languageGroups = getLanguageGroups()
-export const countVerse = versesData.length
+export const countVerse = versesData.length;
 
 export const langList = Object.keys(languageGroups).map((langEnglish, index) => ({
   orig: languageGroups[langEnglish][0].languageOriginal,
