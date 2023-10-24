@@ -274,7 +274,7 @@
 }
 
 @keyframes dotrw4 {
-  rom {
+  from {
     transform: translateX(0px) scale(1);
     opacity: 1;
     border-color: #000000;

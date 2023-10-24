@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-exports.handler = async function (event) {
+export async function handler(event) {
   let sendInfo;
   try {
     sendInfo = JSON.parse(event.body);
