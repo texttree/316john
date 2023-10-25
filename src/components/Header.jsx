@@ -1,16 +1,19 @@
-import LocaleSwitch from './LocaleSwitch';
+import LocaleSwitch from './LocaleSwitch'
+import DarkModeToggle from './DarkModeToggle'
+import Logo from '../logo.svg?react'
 
 function Header() {
   return (
-    <div className="flex flex-row py-6 justify-center relative">
-      <div className="font-['Anek_Bangla'] font-bold uppercase text-2xl">
-        3:16 John
+    <div className="flex py-6 justify-center items-center relative">
+      <div className="text-primary dark:text-white">
+        <Logo />
       </div>
-      <div className="absolute right-0">
+      <div className="flex absolute right-0">
+        <DarkModeToggle />
         <LocaleSwitch />
       </div>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

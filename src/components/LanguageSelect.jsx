@@ -1,41 +1,41 @@
-import { useEffect, useState } from 'react';
-import { Combobox } from '@headlessui/react';
-import { createBrowserHistory } from 'history';
-import { useRecoilState } from 'recoil';
+import { useEffect, useState } from 'react'
+import { Combobox } from '@headlessui/react'
+import { createBrowserHistory } from 'history'
+import { useRecoilState } from 'recoil'
 
-import { languageIndexState } from '../atoms';
-import { filterLangList, langList, searchLanguage } from '../helper';
+import { languageIndexState } from '../atoms'
+import { filterLangList, langList, searchLanguage } from '../helper'
 
 function LanguageSelect() {
-  let history = createBrowserHistory();
-  const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState);
-  const [selectedLanguage, setSelectedLanguage] = useState({});
-  const [query, setQuery] = useState('');
+  let history = createBrowserHistory()
+  const [languageIndex, setLanguageIndex] = useRecoilState(languageIndexState)
+
+  const [selectedLanguage, setSelectedLanguage] = useState({})
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
-    setSelectedLanguage(
-      langList.filter((el) => el.index === languageIndex)?.[0]
-    );
-  }, [languageIndex]);
+    setSelectedLanguage(langList.filter((el) => el.index === languageIndex)?.[0])
+  }, [languageIndex])
 
   useEffect(() => {
-    const currentLang = searchLanguage(history.location.pathname.slice(1));
+    const currentLang = searchLanguage(history.location.pathname.slice(1))
     if (currentLang?.eng) {
-      setLanguageIndex(currentLang.index);
+      setLanguageIndex(currentLang.index)
     }
-  }, [history.location.pathname, setLanguageIndex]);
+  }, [history.location.pathname, setLanguageIndex])
 
   return (
     <div className="mt-5 mb-9 sm:my-14 lg:my-20 w-full sm:w-72 mx-auto">
       <Combobox
         value={selectedLanguage}
         onChange={(newValue) => {
-          setSelectedLanguage(newValue);
-          history.push('/' + newValue.eng);
-          setLanguageIndex(newValue.index);
-        }}>
+          setSelectedLanguage(newValue)
+          history.push('/' + newValue.eng)
+          setLanguageIndex(newValue.index)
+        }}
+      >
         <div className="relative">
-          <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-zinc-800 p-2 rounded-full flex w-full text-left">
+          <div className="relative cursor-default overflow-hidden bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-hover dark:active:bg-zinc-600  p-2 rounded-full flex w-full text-left">
             <Combobox.Input
               className="w-full border-none py-2 pl-3 bg-transparent pr-10 text-sm focus:outline-none"
               displayValue={(lang) => lang.orig}
@@ -49,7 +49,8 @@ function LanguageSelect() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-11 h-5 cursor-pointer px-3">
+                className="w-11 h-5 cursor-pointer px-3"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -59,7 +60,7 @@ function LanguageSelect() {
             </Combobox.Button>
           </div>
 
-          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-zinc-800 text-base focus:outline-none shadow-md">
+          <Combobox.Options className="absolute mt-4 max-h-60 w-full overflow-auto rounded-3xl bg-zinc-100 dark:bg-widget focus:outline-none shadow-md">
             {filterLangList(query).map((lang) => (
               <Combobox.Option
                 key={lang.index}
@@ -70,7 +71,8 @@ function LanguageSelect() {
                       ? 'bg-black dark:bg-zinc-700 text-white dark:text-white'
                       : 'text-slate-900 dark:text-white'
                   }`
-                }>
+                }
+              >
                 {lang.orig}
               </Combobox.Option>
             ))}
@@ -78,7 +80,7 @@ function LanguageSelect() {
         </div>
       </Combobox>
     </div>
-  );
+  )
 }
 
-export default LanguageSelect;
+export default LanguageSelect

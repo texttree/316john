@@ -1,31 +1,24 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
+import Prev from '../prev.svg?react'
 
-const PrevButton = ({ onClick, classes }) => (
+const PrevButton = ({ onClick, className }) => (
   <button
-    className="bg-zinc-100 dark:bg-zinc-800 rounded-full p-3"
-    onClick={onClick}>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className={classes}>
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.75 19.5L8.25 12l7.5-7.5"
-      />
-    </svg>
+    className={`bg-zinc-100 dark:bg-widget rounded-full p-3 ${className}`}
+    onClick={onClick}
+  >
+    <Prev className="w-full h-full" />
   </button>
-);
+)
 
 PrevButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  classes: PropTypes.string.isRequired,
-};
+  className: PropTypes.string.isRequired,
+}
+
 PrevButton.defaultProps = {
   onClick: () => {},
-  classes: 'w-6 h-6',
-};
-export default PrevButton;
+  className:
+    'w-12 h-12 hover:bg-zinc-200 active:bg-zinc-300 dark:hover:bg-hover dark:active:bg-zinc-600',
+}
+
+export default PrevButton
