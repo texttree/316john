@@ -7,6 +7,7 @@ export default {
       backgroundColor: {
         primary: "#323653",
         widget: "#1D1F34",
+        hover: "#474A6B",
       },
     },
   },

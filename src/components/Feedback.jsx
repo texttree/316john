@@ -83,7 +83,7 @@ function Feedback() {
           />
           <input
             type="submit"
-            className="p-3 mt-4 bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-zinc-700 dark:active:bg-zinc-600 w-full font-bold rounded-lg cursor-pointer"
+            className="p-3 mt-4 bg-zinc-100 dark:bg-widget hover:bg-zinc-200 active:bg-zinc-300  dark:hover:bg-hover dark:active:bg-zinc-600 w-full font-bold rounded-lg cursor-pointer"
             value={t('Send')}
             disabled={!isFormValid}
           />
